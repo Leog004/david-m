@@ -14,6 +14,9 @@ app.get('/',(req,res)=>{
     res.render('index');
 });
 
+
+
+
 app.listen(process.env.PORT, process.env.IP, function(){
    console.log("Web app is up and running"); 
 });
