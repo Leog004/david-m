@@ -19,6 +19,10 @@ app.get('/contact',(req,res)=>{
     res.render('contact');
 });
 
+app.get('/bio',(req,res)=>{
+    res.render('bio');
+});
+
 app.get('/gallery',(req,res)=>{
     res.render('gallery');
 });

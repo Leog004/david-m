@@ -43,6 +43,29 @@
         
             background-color:rgb(0,0,0,0.4) !important;
         }
+        .awards-timline h4 {
+            color: #000;
+            margin-bottom: 0;
+        }
+.panel-left:after {
+    position: absolute;
+    content: "";
+    top: 25px;
+    right: 0;
+    width: 4px;
+    height: 365px;
+    background-color: #BCBCBC;
+}    
+
+.timeline-panel.timeline:before {
+    position: absolute;
+    content: "";
+    top: 10px;
+    right: -51px;
+    width: 16px;
+    height: 16px;
+    background-color: #BCBCBC;
+}
         .homevid{
             width:50%;
         }
@@ -55,6 +78,11 @@
         
         .btn.btn-primary::hover{
             color:#000 !important;
+        }        
+        
+        .showcase-overlay {
+        
+            background-color:rgb(0,0,0,0.4) !important;
         }        
         
         @media (max-width: 991px){
@@ -102,7 +130,7 @@
                                     </div>
                                 </a>
                             </li>
-                            <li>
+                            <li class="dropdown active">
                                 <a href="/bio">
                                     Bio
                                     <div class="equalizer">
@@ -170,7 +198,7 @@
                                     </div>
                                 </a>
                             </li>
-                            <li class="dropdown active">
+                            <li>
                                 <a href="/contact">
                                     Contact
                                     <div class="equalizer">
@@ -195,9 +223,9 @@
         </header><!-- Header --> 
 
                 <div class="feedback section-padding before-after" style="margin-top:80px;">
-                <div class="entry-post" style="background-image:url('images/DavidP/IMG_6450.jpg'); height:50vh;background-size: cover; background-repeat: no-repeat;background-position: center;">
+                <div class="entry-post" style="background-image:url('images/DavidP/IMG_6463.jpg'); height:50vh;background-size: cover; background-repeat: no-repeat;background-position: bottom;">
                             <div class="about-info">
-                                <h1 style="color:#fff; border-bottom:none !important; margin-bottom:0;">Contact Me</h1>
+                                <h1 style="color:#fff; border-bottom:none !important; margin-bottom:0;">Biography</h1>
                                 <ul class="social list-inline">
                                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -208,43 +236,140 @@
                                 </ul>                               
                             </div>                
                 </div>                     
-            <div class="container">
-                <div class="feedback-content">
-                    <h1>Contact Me</h1>                                
-                    <form id="contact-form" class="contact-form" name="contact-form" method="post" action="#">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label for="one">Name</label>
-                                    <input type="text" class="form-control" required="required" id="one">
+        <div class="artist-section before-after section-padding bg-white">
+            <div class="artist-detail">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="artist-image">
+                                <img class="img-responsive" src="images/artists/17.jpg" alt="Image">
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="artist-info">
+                                <ul class="list-inline">
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                </ul> 
+                                <h1>DAVID MESQUITIC</h1> 
+                                <h4>Rockers Band</h4>  
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>   
+                                <address>
+                                    <ul class="menu">
+                                        <li><h5>Name:</h5>DAVID MESQUITIC</li>
+                                        <li><h5>Occupation: </h5>Musician. Pianist. Trumpeter</li>
+                                        <li><h5>Education: </h5> Parklane Academy,</li>
+                                    </ul>
+                                    <ul class="menu sub">
+                                        <li><h5>Place of Birth: </h5>McComb, Mississippi</li>
+                                        <li><h5>Birth Date: </h5>December 2, 1981 (age 34)</li>                                        
+                                        <li><h5>Home town: </h5>Kentwood, Louisiana, U.S.</li>
+                                    </ul>
+                                </address>                     
+                            </div>
+                        </div>
+                    </div><!-- row -->
+                </div><!-- container -->
+            </div><!-- artist detail -->
+        </div><!-- feedback -->   
+        
+        <div class="musical-awards section-padding before-after text-center bg-white">
+            <div class="section-title">
+                <h4>Recent Work</h4>
+                <h2>Musical Pieces</h2>
+            </div>            
+            <div class="container" style="margin-bottom:100px;">
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        <div class="showcase">
+                            <img class="img-responsive" src="images/showcase/1.jpg" alt="Image">
+                            <div class="showcase-overlay">
+                                <div class="showcase-icons">
+                                    <a class="video-link" href="https://www.youtube.com/watch?v=lw3Or6eqIpI"><i class="fa fa-youtube-play"></i></a>
+                                </div>                            
+                                <div class="showcase-info">
+                                    <h3>DAVID MESQUITIC</h3>
+                                    <h5>Rockers Band</h5>
                                 </div>
                             </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label for="two">Email</label>
-                                    <input type="email" class="form-control" required="required" id="two">
-                                </div> 
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label for="three">Subject</label>
-                                    <input type="text" class="form-control" required="required" id="three">
-                                </div> 
-                            </div>
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label for="four">Your Text</label>
-                                    <textarea name="message" required="required" class="form-control" rows="7" id="four"></textarea>
-                                </div>             
-                            </div>     
                         </div>
-                        <div class="form-group text-center">
-                            <button type="submit" class="btn btn-primary pull-right">Submit now!</button>
+                    </div>
+                    <div class="col-sm-6 col-md-4">
+                        <div class="showcase">
+                            <img class="img-responsive" src="images/showcase/2.jpg" alt="Image">
+                            <div class="showcase-overlay">
+                                <div class="showcase-icons">
+                                    <a class="video-link" href="https://www.youtube.com/watch?v=lw3Or6eqIpI"><i class="fa fa-youtube-play"></i></a>
+                                </div>                            
+                                <div class="showcase-info">
+                                    <h3>DAVID MESQUITIC</h3>
+                                    <h5>Rockers Band</h5>
+                                </div>
+                            </div>
                         </div>
-                    </form><!-- contact form --> 
+                    </div>
+                    <div class="col-sm-6 col-md-4">
+                        <div class="showcase">
+                            <img class="img-responsive" src="images/showcase/3.jpg" alt="Image">
+                            <div class="showcase-overlay">
+                                <div class="showcase-icons">
+                                    <a class="video-link" href="https://www.youtube.com/watch?v=lw3Or6eqIpI"><i class="fa fa-youtube-play"></i></a>
+                                </div>                            
+                                <div class="showcase-info">
+                                    <h3>DAVID MESQUITIC</h3>
+                                    <h5>Rockers Band</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div><!-- container --> 
-        </div><!-- feedback -->   
+            </div>            
+            <div class="section-title">
+                <h4>Achievement</h4>
+                <h2>Musical awards</h2>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="awards-timline">
+                        <div class="panel-left">
+                            <div class="timeline-panel timeline">
+                                <img  class="img-responsive" src="images/clients/1.png" alt="Image">
+                            </div>
+                            <div class="timeline-panel timeline">
+                                <h4>Best Piano 2014</h4>
+                                <p>Best beat</p>
+                            </div>
+                            <div class="timeline-panel timeline">
+                                <img  class="img-responsive" src="images/clients/2.png" alt="Image">
+                            </div>
+                            <div class="timeline-panel timeline">
+                                <h4>Best Piano 20112</h4>
+                                <p>Best beat</p>
+                            </div>                            
+                        </div>
+                        <div class="panel-right">
+                            <div class="timeline-panel">
+                                <h4>Best Piano 2016</h4>
+                                <p>Best beat</p>
+                            </div>
+                            <div class="timeline-panel">
+                                <img  class="img-responsive" src="images/clients/1.png" alt="Image">
+                            </div>
+                            <div class="timeline-panel">
+                                <h4>Best Piano 2013</h4>
+                                <p>Best beat</p>
+                            </div> 
+                            <div class="timeline-panel">
+                                <img  class="img-responsive" src="images/clients/4.png" alt="Image">
+                            </div>                                                       
+                        </div>
+                    </div>              
+                </div><!-- row -->
+            </div><!-- container -->
+        </div><!-- musical awards -->        
+        
+        
 <div class="about-section about about-biography bg-image section-padding before-after">     
         <div class="container" style="margin-bottom:40px;">
             <hr style="background:#000;">
