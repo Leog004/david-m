@@ -19,7 +19,9 @@ app.get('/contact',(req,res)=>{
     res.render('contact');
 });
 
-
+app.get('/gallery',(req,res)=>{
+    res.render('gallery');
+});
 
 app.listen(process.env.PORT, process.env.IP, function(){
    console.log("Web app is up and running"); 

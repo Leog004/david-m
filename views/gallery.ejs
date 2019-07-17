@@ -47,15 +47,10 @@
             width:50%;
         }
         
-        .btn.btn-primary{
+        .gallery-overlay {
         
-            background-color:#000;
-            border: 1px solid #000;
+            background-color:rgb(0,0,0,0.3);
         }
-        
-        .btn.btn-primary::hover{
-            color:#000 !important;
-        }        
         
         @media (max-width: 991px){
          .homevid{
@@ -85,7 +80,7 @@
                     </div>
                     <nav class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">
-                            <li class="dropdown">
+                            <li>
                                 <a href="/">
                                     Home
                                     <div class="equalizer">
@@ -136,7 +131,7 @@
                                     </div>
                                 </a>
                             </li>
-                            <li>
+                            <li class="dropdown active">
                                 <a href="/gallery">
                                     Gallery
                                     <div class="equalizer">
@@ -170,7 +165,7 @@
                                     </div>
                                 </a>
                             </li>
-                            <li class="dropdown active">
+                            <li>
                                 <a href="/contact">
                                     Contact
                                     <div class="equalizer">
@@ -193,11 +188,10 @@
                 </div><!-- container -->
             </div><!-- navbar -->                                
         </header><!-- Header --> 
-
-                <div class="feedback section-padding before-after" style="margin-top:80px;">
-                <div class="entry-post" style="background-image:url('images/DavidP/IMG_6450.jpg'); height:50vh;background-size: cover; background-repeat: no-repeat;background-position: center;">
+ <div class="feedback section-padding before-after" style="margin-top:80px;">        
+                <div class="entry-post" style="background-image:url('images/DavidP/IMG_4581.JPG'); height:50vh;background-size: cover; background-repeat: no-repeat;background-position: top;">
                             <div class="about-info">
-                                <h1 style="color:#fff; border-bottom:none !important; margin-bottom:0;">Contact Me</h1>
+                                <h1 style="color:#fff; border-bottom:none !important; margin-bottom:0;">Gallery</h1>
                                 <ul class="social list-inline">
                                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -207,70 +201,58 @@
                                     <li><a href="#"><i class="fa fa-rss"></i></a></li>
                                 </ul>                               
                             </div>                
-                </div>                     
+                </div> 
+</div>
+<div class="gallery-hive section-padding before-after bg-white" style="margin-top:100px;">
             <div class="container">
-                <div class="feedback-content">
-                    <h1>Contact Me</h1>                                
-                    <form id="contact-form" class="contact-form" name="contact-form" method="post" action="#">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label for="one">Name</label>
-                                    <input type="text" class="form-control" required="required" id="one">
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label for="two">Email</label>
-                                    <input type="email" class="form-control" required="required" id="two">
-                                </div> 
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label for="three">Subject</label>
-                                    <input type="text" class="form-control" required="required" id="three">
-                                </div> 
-                            </div>
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label for="four">Your Text</label>
-                                    <textarea name="message" required="required" class="form-control" rows="7" id="four"></textarea>
-                                </div>             
-                            </div>     
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="gallery-item">
+                            <img class="img-responsive" src="images/DavidP/IMG_6450.jpg" alt="Image">
+                            <div class="gallery-overlay"></div>
                         </div>
-                        <div class="form-group text-center">
-                            <button type="submit" class="btn btn-primary pull-right">Submit now!</button>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="gallery-item">
+                            <img class="img-responsive" src="images/DavidP/IMG_6541.jpg" alt="Image">
+                            <div class="gallery-overlay"></div>
                         </div>
-                    </form><!-- contact form --> 
-                </div>
-            </div><!-- container --> 
-        </div><!-- feedback -->   
-<div class="about-section about about-biography bg-image section-padding before-after">     
-        <div class="container" style="margin-bottom:40px;">
-            <hr style="background:#000;">
-            <div class="col-sm-6 text-center">
-                <div class="sqs-block-content">
-                    <h3 class="text-align-center"><strong>BOOKING </strong></h3>
-                    <p class="text-align-center"><a target="_blank" href="http://www.thekurlandagency.com/artist/christian-sands/">The Kurland Agency</a></p>
-                    <p class="text-align-center">173 Brighton Ave</p><p class="text-align-center">Boston, MA &nbsp;02134</p>
-                    <p class="text-align-center">Email: agents@thekurlandagency</p>
-                    <p class="text-align-center">Ph. +1.617.254.0007 / Fax 1+617.782.3577</p>
-                    <p>&nbsp;</p>
-                </div>
-            </div>
-            <div class="col-sm-6 text-center">
-                <div class="sqs-block-content"><h3 class="text-align-center"><strong>&nbsp;Contact&nbsp;</strong><strong>Information </strong></h3>
-                    <h3 class="text-align-center"><strong>Email:</strong></h3>
-                    <p class="text-align-center">dmesquitic@gmail.com</p>
-                    <p class="text-align-center"><strong>Mailing Address</strong></p>
-                    <p class="text-align-center">Sands Music Productions, LLC</p>
-                    <p class="text-align-center">P.O. Box 1097</p>
-                    <p class="text-align-center">Orange, CT &nbsp;06477</p>
-                </div>              
-                   
-          </div>
-          </div>
-</div>   
+                    </div>
+                </div><!-- row -->
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="gallery-item">
+                            <img class="img-responsive" src="images/DavidP/IMG_6469.png" alt="Image">
+                            <div class="gallery-overlay"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="gallery-item">
+                            <img class="img-responsive" src="images/DavidP/IMG_4752.JPG" alt="Image">
+                            <div class="gallery-overlay"></div>
+                        </div>
+                    </div>
+                </div><!-- row -->
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="gallery-item">
+                            <img class="img-responsive" src="images/DavidP/IMG_4710.JPG" alt="Image">
+                            <div class="gallery-overlay"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="gallery-item">
+                            <img class="img-responsive" src="images/DavidP/IMG_4739.JPG" alt="Image">
+                            <div class="gallery-overlay"></div>
+                        </div>
+                    </div>
+                </div><!-- row -->
+            </div><!-- container -->
+        </div><!-- gallery hive -->          
+
+
+
+
         <div class="footer before-after bg-white">
             <div class="container">
                 <div class="copyright">
@@ -306,6 +288,6 @@
         <script src="js/jquery.spinner.min.js"></script> 
         <script src="js/cubeportfolio.min.js"></script>    
         <script src="js/jplayer.source.js"></script>
-        <script src="js/main.js"></script>         
+        <script src="js/main.js"></script>        
     </body>
 </html>
