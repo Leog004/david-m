@@ -15,7 +15,7 @@ jQuery(function ($) {
 
         $(".body-band").backstretch([ "images/slider/slider4.jpg","images/slider/slider5.jpg"], {fade: 750,duration: 3000}); 
 
-        $(".body-personal").backstretch(["images/DavidP/IMG_6521.jpg"], {fade: 750,duration: 3000});
+        $(".body-personal").backstretch(["images/DavidP/IMG_6469.png"], {fade: 750,duration: 100});
     }());
 
 

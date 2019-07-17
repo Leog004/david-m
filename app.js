@@ -15,6 +15,10 @@ app.get('/',(req,res)=>{
 });
 
 
+app.get('/contact',(req,res)=>{
+    res.render('contact');
+});
+
 
 
 app.listen(process.env.PORT, process.env.IP, function(){

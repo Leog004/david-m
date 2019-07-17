@@ -145,7 +145,7 @@ a:focus, button:focus, .btn:focus,
 .page-title h1 {
     font-size: 12px;
     letter-spacing: 14px;
-    color: #ed145b;
+    color: #000;
     font-family: 'allerbold';
 }
 
@@ -2159,12 +2159,12 @@ textarea.form-control {
 
 .promotion .btn.btn-primary {
     background-color: #fff;
-    color: #ed145b;
+    color: #000;
     border-color: #fff;
 }
 
 .promotion .btn.btn-primary i {
-    color: #ed145b;
+    color: #000;
 }
 
 .promotion .btn.btn-primary:hover {
