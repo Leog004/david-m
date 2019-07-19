@@ -27,6 +27,10 @@ app.get('/gallery',(req,res)=>{
     res.render('gallery');
 });
 
+app.get('*',(req,res)=>{
+     res.redirect('/');
+});
+
 app.listen(process.env.PORT, process.env.IP, function(){
    console.log("Web app is up and running"); 
 });
