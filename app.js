@@ -27,6 +27,11 @@ app.get('/gallery',(req,res)=>{
     res.render('gallery');
 });
 
+app.get('/shows',(req,res)=>{
+    res.render('shows');
+});
+
+
 app.get('*',(req,res)=>{
      res.redirect('/');
 });
