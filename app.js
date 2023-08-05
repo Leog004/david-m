@@ -76,11 +76,9 @@ app.use((req, res, next) => {
 
 app.use('/', viewRouter); // get view Routes
 
-
-app.listen(process.env.PORT, function(){
-  console.log(`http://${process.env.IP}:${process.env.PORT}`)
+app.listen(process.env.PORT, process.env.IP, function(){
+    console.log(`http://${process.env.IP}:${process.env.PORT}`)
 });
-
 
 app.use(globalErrorHandler); // displays global error
 
