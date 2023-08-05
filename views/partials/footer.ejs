@@ -1,0 +1,54 @@
+<div class="about-section about about-biography bg-image section-padding before-after">     
+    <div class="container" style="margin-bottom:40px;">
+        <hr style="background:#000;">
+        <div class="col-sm-6 text-center">
+            <div class="sqs-block-content" id="leftSection"></div>
+        </div>
+        <div class="col-sm-6 text-center">
+            <div class="sqs-block-content" id="rightSection"></div>                   
+        </div>
+      </div>
+</div>   
+
+
+<div class="footer before-after bg-white">
+    <div class="container">
+        <div class="copyright">
+            <p style="color:#2E323A;">Copyright 2023 &copy;DM</p>
+
+         <!-- <p style="color:#2E323A;">Copyright 2019 &copy; <a style="color:#2E323A;" href="http://lgnetworkdesign.com" target="_blank">LGND</a></p> -->
+        </div>  
+        <div class="footer-memu">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="#">Bio</a></li>
+                <li><a href="#">Shows</a></li>
+                <li><a href="#">Gallery</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>                          
+    </div><!-- container -->
+</div><!-- footer -->
+
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        var rightTitle = `<%=footer?.right?.title%>` || '';
+        var rightContent = `<%=footer?.right?.text%>` || '';
+
+        var leftTitle = `<%=footer?.left?.title%>` || '';
+        var leftContent = `<%=footer?.left?.text%>` || '';
+
+        let leftParagraphs = leftContent.split(',');
+
+        let rightParagraphs = rightContent.split(',');
+
+        let rightHtml = `<h3 class="text-align-center"><strong>${rightTitle}</strong></h3>`;
+        rightParagraphs.forEach((el) => { rightHtml += `<p class="text-align-center">${el}</p>`});
+
+        let leftHtml = `<h3 class="text-align-center"><strong>${leftTitle}</strong></h3>`;
+        leftParagraphs.forEach((el) => { leftHtml += `<p class="text-align-center">${el}</p>`});
+
+        document.getElementById('leftSection').innerHTML = leftHtml;
+        document.getElementById('rightSection').innerHTML = rightHtml;
+    });
+</script>

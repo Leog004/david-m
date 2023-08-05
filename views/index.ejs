@@ -54,157 +54,67 @@
         .homevid{
             width:50%;
         }
+
+
         @media (max-width: 991px){
-         .homevid{
+        .homevid{
             width:100%;
             margin: 40px 0;
         }         
                 
-                .band-banner .home-content h1, .home-banner.biography .home-content h1 {
+            .band-banner .home-content h1, .home-banner.biography .home-content h1 {
                  font-size: 45px;
                   line-height: 42px;
+            }
+        }
+
+        @media (max-width: 720px){
+            .social.list-inline {
+                position: absolute !important;
+                bottom: 0 !important;
+                left: 50% !important;
+                transform: translate(-50%, -50%) !important;
+            }
+            .video-gallery.homevid {
+                display: none !important;
             }
         }
     </style>
     </head>
     <body class="body-personal">
-        <header id="navigation">  
-            <div class="navbar navbar-fixed-top">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="/" style="color:#000;"><img class="img-responsive" src="images/logo.png" style="width:50px; display:inline;" alt="Logo">David M</a>
-                    </div>
-                    <nav class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav">
-                            <li class="dropdown active">
-                                <a href="/">
-                                    Home
-                                    <div class="equalizer">
-                                        <span class="bar bar-1"></span>
-                                        <span class="bar bar-2"></span>
-                                        <span class="bar bar-3"></span>
-                                        <span class="bar bar-4"></span>
-                                        <span class="bar bar-5"></span>
-                                        <span class="bar bar-6"></span>
-                                        <span class="bar bar-7"></span>
-                                        <span class="bar bar-8"></span>
-                                        <span class="bar bar-9"></span>
-                                        <span class="bar bar-10"></span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/bio">
-                                    Bio
-                                    <div class="equalizer">
-                                        <span class="bar bar-1"></span>
-                                        <span class="bar bar-2"></span>
-                                        <span class="bar bar-3"></span>
-                                        <span class="bar bar-4"></span>
-                                        <span class="bar bar-5"></span>
-                                        <span class="bar bar-6"></span>
-                                        <span class="bar bar-7"></span>
-                                        <span class="bar bar-8"></span>
-                                        <span class="bar bar-9"></span>
-                                        <span class="bar bar-10"></span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/shows">
-                                    Shows
-                                    <div class="equalizer">
-                                        <span class="bar bar-1"></span>
-                                        <span class="bar bar-2"></span>
-                                        <span class="bar bar-3"></span>
-                                        <span class="bar bar-4"></span>
-                                        <span class="bar bar-5"></span>
-                                        <span class="bar bar-6"></span>
-                                        <span class="bar bar-7"></span>
-                                        <span class="bar bar-8"></span>
-                                        <span class="bar bar-9"></span>
-                                        <span class="bar bar-10"></span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/gallery">
-                                    Gallery
-                                    <div class="equalizer">
-                                        <span class="bar bar-1"></span>
-                                        <span class="bar bar-2"></span>
-                                        <span class="bar bar-3"></span>
-                                        <span class="bar bar-4"></span>
-                                        <span class="bar bar-5"></span>
-                                        <span class="bar bar-6"></span>
-                                        <span class="bar bar-7"></span>
-                                        <span class="bar bar-8"></span>
-                                        <span class="bar bar-9"></span>
-                                        <span class="bar bar-10"></span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Store
-                                    <div class="equalizer">
-                                        <span class="bar bar-1"></span>
-                                        <span class="bar bar-2"></span>
-                                        <span class="bar bar-3"></span>
-                                        <span class="bar bar-4"></span>
-                                        <span class="bar bar-5"></span>
-                                        <span class="bar bar-6"></span>
-                                        <span class="bar bar-7"></span>
-                                        <span class="bar bar-8"></span>
-                                        <span class="bar bar-9"></span>
-                                        <span class="bar bar-10"></span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/contact">
-                                    Contact
-                                    <div class="equalizer">
-                                        <span class="bar bar-1"></span>
-                                        <span class="bar bar-2"></span>
-                                        <span class="bar bar-3"></span>
-                                        <span class="bar bar-4"></span>
-                                        <span class="bar bar-5"></span>
-                                        <span class="bar bar-6"></span>
-                                        <span class="bar bar-7"></span>
-                                        <span class="bar bar-8"></span>
-                                        <span class="bar bar-9"></span>
-                                        <span class="bar bar-10"></span>
-                                    </div>
-                                </a>
-                            </li>   
-                        </ul>
-                    </nav>
-                    <!--<a href="#" class="btn btn-primary">Register now!</a> -->
-                </div><!-- container -->
-            </div><!-- navbar -->                                
-        </header><!-- Header --> 
+        <% include partials/header %>
+
+        <!-- Set all my variables -->
+        <% var heading = homePage?.heading || 'hello'; %>
+        <% var subHeading = homePage?.subHeading || 'hello'; %>
+        <% var backgroundImage = homePage?.backgroundImage?.image?.url || '/images/DavidP/IMG_6469.png'; %>
+        <% var featureVideoImage = homePage?.featureVideo?.image?.url || '/images/DavidP/IMG_6469.png'; %>
+        <% var featureVideoLink = homePage?.featureVideo?.youtubeUrl || 'https://www.youtube.com/watch?v=HblllXL0VU0'; %>       
+        <% var bioCardParagraph = homePage?.bioCardInformation?.paragraph || 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'; %> 
+        <% var bioCardTitle = homePage?.bioCardInformation?.title || 'David M'; %>      
+        <% var bioCardSubtitle = homePage?.bioCardInformation?.subTitle || 'Bio'; %>           
+        <% var bioCardImage = homePage?.bioCardInformation?.bioCardImage?.url || '/images/DavidP/IMG_6469.png'; %>                                          
+        <% var socialMediaInstagram = homePage?.socialMedia?.instagramUrl || 'Bio'; %>
+        <% var socialMediafacebook = homePage?.socialMedia?.facebookUrl || 'David M'; %>                                                           
+        <% var socialMediasoundCloud = homePage?.socialMedia?.soundCloudUrl || 'Bio'; %> 
+        <% var socialMediaSpotifyUrl = homePage?.socialMedia?.spotifyUrl || 'Bio'; %>
+        <% var socialMediaTwitter = homePage?.socialMedia?.twitterUrl || 'Bio'; %> 
+        
 
         <div class="home-banner biography" style="background: rgba(0,0,0,.2);">
-            <div class="container">
+            <div class="container" style="position: relative;">
                 <div class="home-content" style="padding-bottom: 120px;">
-                    <h2>David Mesquitic</h2>   
-                    <h1>Musician. Pianist. Trumpeter </h1>
+                    <h2><%= heading %></h2>   
+                    <h1><%= subHeading %> </h1>
                         <div class="video-gallery homevid">
                             <div class="gallery-tab">
                                 <div class="tab-content">
                                     <div role="tabpanel" class="tab-pane active" id="one">
                                         <div class="video-content" style="box-shadow: 0px 15px 38px rgba(0, 0, 0, .5);">
                                             <div class="video-overlay"></div>
-                                            <img class="img-responsive" style="border-radius:5px;" src="images/DavidP/IMG_4752.JPG" alt="Image">
+                                            <img class="img-responsive" style="border-radius:5px;" src=<%= featureVideoImage %> alt="Image">
                                             <div class="video video-icons text-center">
-                                                <a class="video-link" href="https://www.youtube.com/watch?v=HblllXL0VU0"><img class="img-responsive" src="images/player/1.png" alt="Image"></a>
+                                                <a class="video-link" href="<%=featureVideoLink%>"><img class="img-responsive" src="images/player/1.png" alt="Image"></a>
                                             </div>                                
                                         </div>
                                     </div>
@@ -212,12 +122,11 @@
                             </div> <!-- gallery tab --> 
                         </div>
                     <ul class="social list-inline">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a href="#"><i class="fa fa-soundcloud"></i></a></li>
-                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                        <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                        <li><a href="<%=socialMediafacebook%>"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="<%=socialMediaTwitter%>"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="<%=socialMediasoundCloud%>"><i class="fa fa-soundcloud"></i></a></li>
+                        <li><a href="<%=socialMediaInstagram%>"><i class="fa fa-instagram"></i></a></li>
+                        <li><a href="<%=socialMediasoundCloud%>"><i class="fa fa-rss"></i></a></li>
                     </ul>
                 </div>
                 <div id="audio-player-wrapper" class="audio-player">
@@ -278,21 +187,22 @@
                     <div class="row">
                         <div class="col-md-6  no-padding">
                             <div class="about-image">
-                                <img  class="img-responsive" src="images/DavidP/IMG_6541.jpg" alt="Image">
+                                <img  class="img-responsive" src="<%=bioCardImage%>" alt="Image">
                             </div>
                         </div>
                         <div class="col-md-6 no-padding">
                             <div class="about-info">
-                                <h3>DAVID MESQUITIC</h3>
-                                <H4>Musician. Pianist. Trumpeter</H4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                <h3><%=bioCardTitle%></h3>
+                                <h4><%=bioCardSubtitle%></h4>
+                                <p>
+                                    <%=bioCardParagraph%>
+                                </p>
                                 <ul class="social list-inline">
-                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-soundcloud"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                                    <li><a href="<%=socialMediafacebook%>"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="<%=socialMediaTwitter%>"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="<%=socialMediasoundCloud%>"><i class="fa fa-soundcloud"></i></a></li>
+                                    <li><a href="<%=socialMediaInstagram%>"><i class="fa fa-instagram"></i></a></li>
+                                    <li><a href="<%=socialMediasoundCloud%>"><i class="fa fa-rss"></i></a></li>
                                 </ul>
                             </div>
                         <div class="form-group">
@@ -304,48 +214,8 @@
             </div><!-- about content -->
         </div><!-- about section --> 
 
-<div class="about-section about about-biography bg-image section-padding before-after">     
-        <div class="container" style="margin-bottom:40px;">
-            <hr style="background:#000;">
-            <div class="col-sm-6 text-center">
-                <div class="sqs-block-content">
-                    <h3 class="text-align-center"><strong>BOOKING </strong></h3>
-                    <p class="text-align-center"><a target="_blank" href="http://www.thekurlandagency.com/artist/christian-sands/">Somewhere in Austin</a></p>
-                    <p class="text-align-center">173 Brighton Ave</p><p class="text-align-center">Austin, TX &nbsp;02134</p>
-                    <p class="text-align-center">Email: dmesquitic@gmail.com</p>
-                    <p class="text-align-center">Ph. your phone number</p>
-                    <p>&nbsp;</p>
-                </div>
-            </div>
-            <div class="col-sm-6 text-center">
-                <div class="sqs-block-content"><h3 class="text-align-center"><strong>&nbsp;Contact&nbsp;</strong><strong>Information </strong></h3>
-                    <h3 class="text-align-center"><strong>Email:</strong></h3>
-                    <p class="text-align-center">dmesquitic@gmail.com</p>
-                    <p class="text-align-center"><strong>Mailing Address</strong></p>
-                    <p class="text-align-center">Sands Music Productions, LLC</p>
-                    <p class="text-align-center">P.O. Box 1097</p>
-                    <p class="text-align-center">Orange, CT &nbsp;06477</p>
-                </div>              
-                   
-          </div>
-          </div>
-</div>   
-        <div class="footer before-after bg-white">
-            <div class="container">
-                <div class="copyright">
-                 <p style="color:#2E323A;">Copyright 2019 &copy; <a style="color:#2E323A;" href="http://lgnetworkdesign.com" target="_blank">LGND</a></p>
-                </div>  
-                <div class="footer-memu">
-                    <ul>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="#">Bio</a></li>
-                        <li><a href="#">Shows</a></li>
-                        <li><a href="#">Store</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                </div>                          
-            </div><!-- container -->
-        </div><!-- footer -->
+<!-- partials footer -->
+<% include partials/footer %>
 
 
 
@@ -366,5 +236,20 @@
         <script src="js/cubeportfolio.min.js"></script>    
         <script src="js/jplayer.source.js"></script>
         <script src="js/main.js"></script>        
+
+        <script>
+            (function () {
+                var bodyPersonal = document.querySelector(".home-banner");
+                var imagePersonal = `<%=backgroundImage %>` || "images/DavidP/IMG_6469.png";
+    
+                console.log(`<%=featureVideoLink%>`);
+    
+                // Assign background image to .body-personal
+                bodyPersonal.style.backgroundImage = "url('" + imagePersonal + "')";
+                bodyPersonal.style.backgroundSize = "cover";
+                bodyPersonal.style.backgroundPosition = "center";
+                bodyPersonal.style.transition = "background-image 0.75s ease-in-out";
+            })();
+        </script>
     </body>
 </html>

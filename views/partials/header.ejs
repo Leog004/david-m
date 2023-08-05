@@ -1,0 +1,135 @@
+
+
+<!-- Run javascript to get url path -->
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        var url = window.location.pathname;
+        var filename = url.substring(url.lastIndexOf('/') + 1);
+        console.log(filename);
+
+        var navbarItems = document.querySelectorAll('.navbar-nav li');
+
+        if (filename === 'bio') {
+            console.log('bio');
+            navbarItems[1].classList.add('active');
+        } else if (filename === 'shows') {
+            console.log('shows');
+            navbarItems[2].classList.add('active');
+        } else if (filename === 'gallery') {
+            console.log('gallery');
+            navbarItems[3].classList.add('active');
+        } else if (filename === 'contact') {
+            console.log('contact');
+            navbarItems[4].classList.add('active');
+        } else {
+            console.log('home');
+            navbarItems[0].classList.add('active');
+        }
+    });
+</script>
+
+<header id="navigation">  
+    <div class="navbar navbar-fixed-top" style="background-color: #fff;">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/" style="color:#000;">David M</a>
+            </div>
+            <nav class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="/">
+                            Home
+                            <div class="equalizer">
+                                <span class="bar bar-1"></span>
+                                <span class="bar bar-2"></span>
+                                <span class="bar bar-3"></span>
+                                <span class="bar bar-4"></span>
+                                <span class="bar bar-5"></span>
+                                <span class="bar bar-6"></span>
+                                <span class="bar bar-7"></span>
+                                <span class="bar bar-8"></span>
+                                <span class="bar bar-9"></span>
+                                <span class="bar bar-10"></span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/bio">
+                            Bio
+                            <div class="equalizer">
+                                <span class="bar bar-1"></span>
+                                <span class="bar bar-2"></span>
+                                <span class="bar bar-3"></span>
+                                <span class="bar bar-4"></span>
+                                <span class="bar bar-5"></span>
+                                <span class="bar bar-6"></span>
+                                <span class="bar bar-7"></span>
+                                <span class="bar bar-8"></span>
+                                <span class="bar bar-9"></span>
+                                <span class="bar bar-10"></span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/shows">
+                            Shows
+                            <div class="equalizer">
+                                <span class="bar bar-1"></span>
+                                <span class="bar bar-2"></span>
+                                <span class="bar bar-3"></span>
+                                <span class="bar bar-4"></span>
+                                <span class="bar bar-5"></span>
+                                <span class="bar bar-6"></span>
+                                <span class="bar bar-7"></span>
+                                <span class="bar bar-8"></span>
+                                <span class="bar bar-9"></span>
+                                <span class="bar bar-10"></span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/gallery">
+                            Gallery
+                            <div class="equalizer">
+                                <span class="bar bar-1"></span>
+                                <span class="bar bar-2"></span>
+                                <span class="bar bar-3"></span>
+                                <span class="bar bar-4"></span>
+                                <span class="bar bar-5"></span>
+                                <span class="bar bar-6"></span>
+                                <span class="bar bar-7"></span>
+                                <span class="bar bar-8"></span>
+                                <span class="bar bar-9"></span>
+                                <span class="bar bar-10"></span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/contact">
+                            Contact
+                            <div class="equalizer">
+                                <span class="bar bar-1"></span>
+                                <span class="bar bar-2"></span>
+                                <span class="bar bar-3"></span>
+                                <span class="bar bar-4"></span>
+                                <span class="bar bar-5"></span>
+                                <span class="bar bar-6"></span>
+                                <span class="bar bar-7"></span>
+                                <span class="bar bar-8"></span>
+                                <span class="bar bar-9"></span>
+                                <span class="bar bar-10"></span>
+                            </div>
+                        </a>
+                    </li>   
+                </ul>
+            </nav>
+            <!--<a href="#" class="btn btn-primary">Register now!</a> -->
+        </div><!-- container -->
+    </div><!-- navbar -->                                
+</header><!-- Header --> 
