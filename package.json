@@ -41,11 +41,5 @@
     "sweetalert2": "^9.17.1",
     "validator": "^13.1.1",
     "xss-clean": "^0.1.1"
-  },
-  "devDependencies": {
-    "ndb": "^1.1.5"
-  },
-  "engines": {
-    "node": "^10"
   }
 }
