@@ -40,6 +40,32 @@ exports.getBioPage = catchAsync ( async (req, res) => {
     // ]
 
     const bioPageInfomationInfo = [];
+    // bioPage.achievements = {
+    //         title: 'Occupation',
+    //         subTitle: 'Musician. Pianist. Trumpeter',
+    //         achievement: [{
+    //             title: 'Occupation',
+    //             text: 'Musician. Pianist. Trumpeter',
+    //             img: {
+    //                 url: 'images/clients/4.png',
+    //             }
+    //         },
+    //         {
+    //             title: 'Occupation',
+    //             text: 'Musician. Pianist. Trumpeter',
+    //             img: {
+    //                 url: 'images/clients/4.png',
+    //             }
+    //         },
+    //         {
+    //             title: 'Occupation',
+    //             text: 'Musician. Pianist. Trumpeter',
+    //             img: {
+    //                 url: 'images/clients/4.png',
+    //             }
+    //         },
+    //     ]
+    //     }
 
     res.status(200).render('bio',{
         Title: 'Mathew Maciel - Bio Page',

@@ -120,14 +120,7 @@
                 <% var bioSubtitle = bioPage?.bioInformation.subTitle || 'hello'; %>
                 <% var bioParagraph = bioPage?.bioInformation.paragraph || 'hello'; %>
                 <% var bioInfo = bioPage?.bioInformation.info || 'hello'; %>
-
-                
-                <% var featureVideoImage = bioPage?.featureVideo?.image?.url || '/images/DavidP/IMG_6469.png'; %>
-                <% var featureVideoLink = bioPage?.featureVideo?.youtubeUrl || 'https://www.youtube.com/watch?v=HblllXL0VU0'; %>       
-                <% var bioCardParagraph = bioPage?.bioCardInformation?.paragraph || 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'; %> 
-                <% var bioCardTitle = bioPage?.bioCardInformation?.title || 'David M'; %>      
-                <% var bioCardSubtitle = bioPage?.bioCardInformation?.subTitle || 'Bio'; %>           
-                <% var bioCardImage = bioPage?.bioCardInformation?.bioCardImage?.url || '/images/DavidP/IMG_6469.png'; %>  
+    
 
                 <% var socialMediaInstagram = bioPage?.socialMedia?.instagramUrl || 'Bio'; %>
                 <% var socialMediafacebook = bioPage?.socialMedia?.facebookUrl || 'David M'; %>                                                           
@@ -185,12 +178,6 @@
                                     <% bioPageInfomationInfo.forEach((info)=> { %>
                                         <div class="bio-info"><h5><%= info.title %> </h5> <%= info.text %></div>
                                 <% }) %>    
-                                        <!-- <div class="bio-info"><h5>Name:</h5>DAVID MESQUITIC</div>
-                                        <div class="bio-info"><h5>Occupation: </h5>Musician. Pianist. Trumpeter</div>
-                                        <div class="bio-info"><h5>Education: </h5> Parklane Academy,</div>
-                                        <div class="bio-info"><h5>Place of Birth: </h5>McComb, Mississippi</div>
-                                        <div class="bio-info"><h5>Birth Date: </h5>December 2, 1981 (age 34)</div>                                        
-                                        <div class="bio-info"><h5>Home town: </h5>Kentwood, Louisiana, U.S.</div> -->
                                 </div>
                             </div>  
                         </div>
@@ -204,54 +191,35 @@
         <div class="musical-awards section-padding before-after text-center bg-white">
     <!-- if bioPage.recentWork -->
         <% if (bioPage.recentWork) { %>
+
+            <% var recentWorkTitle = bioPage?.recentWork?.title || 'Recent Work'; %>
+            <% var recentWorkSubtitle = bioPage?.recentWork?.subTitle || 'Musical Pieces'; %>
+            <% var recentWork = bioPage?.recentWork?.videoAndImage || []; %>
+
+
             <div class="section-title">
-                <h4>Recent Work</h4>
-                <h2>Musical Pieces</h2>
+                <h4><%= recentWorkTitle %></h4>
+                <h2><%= recentWorkSubtitle %></h2>
             </div>            
             <div class="container" style="margin-bottom:100px;">
                 <div class="row">
-                    <div class="col-sm-6 col-md-4">
-                        <div class="showcase">
-                            <img class="img-responsive" src="images/DavidP/IMG_4233.JPG" alt="Image">
-                            <div class="showcase-overlay">
-                                <div class="showcase-icons">
-                                    <a class="video-link" href="https://www.youtube.com/watch?v=8nxm6oF4g-k"><i class="fa fa-youtube-play"></i></a>
-                                </div>                            
-                                <div class="showcase-info">
-                                    <h3>DAVID MESQUITIC</h3>
-                                    <h5>Rockers Band</h5>
+
+                    <% recentWork.forEach((el)=> { %>
+                        <div class="col-sm-6 col-md-4">
+                            <div class="showcase">
+                                <img class="img-responsive" src="<%= el.image.url %>" alt="Image">
+                                <div class="showcase-overlay">
+                                    <div class="showcase-icons">
+                                        <a class="video-link" href="<%= el.youtubeUrl %>"><i class="fa fa-youtube-play"></i></a>
+                                    </div>                            
+                                    <div class="showcase-info">
+                                        <h3>DAVID MESQUITIC</h3>
+                                        <!-- <h5>Rockers Band</h5> -->
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4">
-                        <div class="showcase">
-                            <img class="img-responsive" src="images/DavidP/IMG_4173.JPG" alt="Image">
-                            <div class="showcase-overlay">
-                                <div class="showcase-icons">
-                                    <a class="video-link" href="https://www.youtube.com/watch?v=8nxm6oF4g-k"><i class="fa fa-youtube-play"></i></a>
-                                </div>                            
-                                <div class="showcase-info">
-                                    <h3>DAVID MESQUITIC</h3>
-                                    <h5>Rockers Band</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4">
-                        <div class="showcase">
-                            <img class="img-responsive" src="images/DavidP/IMG_4517.JPG" alt="Image">
-                            <div class="showcase-overlay">
-                                <div class="showcase-icons">
-                                    <a class="video-link" href="https://www.youtube.com/watch?v=8nxm6oF4g-k"><i class="fa fa-youtube-play"></i></a>
-                                </div>                            
-                                <div class="showcase-info">
-                                    <h3>DAVID MESQUITIC</h3>
-                                    <h5>Rockers Band</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <% }) %>    
                 </div>
             </div>        
             <% } %>
@@ -259,45 +227,32 @@
             <!-- if bioPage.achievements -->
 
             <% if (bioPage.achievements) { %>
-            
+                <% var achievementTitle = bioPage?.achievements?.title || 'Achievement'; %>
+                <% var achievementSubtitle = bioPage?.achievements?.subTitle || 'Achievement'; %>
+                <% var achievements = bioPage?.achievements?.achievement || ''; %>
+
+
             <div class="section-title">
-                <h4>Achievement</h4>
-                <h2>Musical awards</h2>
+                <h4><%= achievementTitle %></h4>
+                <h2><%= achievementSubtitle %></h2>
             </div>
             <div class="container">
                 <div class="row">
                     <div class="awards-timline">
                         <div class="panel-left">
+                        <% achievements.forEach((achievement) => { %>
                             <div class="timeline-panel timeline">
-                                <img  class="img-responsive" src="images/clients/1.png" alt="Image">
+                                <h4><%= achievement.title %></h4>
+                                <p><%= achievement.text %></p>
                             </div>
-                            <div class="timeline-panel timeline">
-                                <h4>Best Piano 2014</h4>
-                                <p>Best beat</p>
-                            </div>
-                            <div class="timeline-panel timeline">
-                                <img  class="img-responsive" src="images/clients/2.png" alt="Image">
-                            </div>
-                            <div class="timeline-panel timeline">
-                                <h4>Best Piano 20112</h4>
-                                <p>Best beat</p>
-                            </div>                            
+                        <% }) %>                             
                         </div>
                         <div class="panel-right">
-                            <div class="timeline-panel">
-                                <h4>Best Piano 2016</h4>
-                                <p>Best beat</p>
-                            </div>
-                            <div class="timeline-panel">
-                                <img  class="img-responsive" src="images/clients/1.png" alt="Image">
-                            </div>
-                            <div class="timeline-panel">
-                                <h4>Best Piano 2013</h4>
-                                <p>Best beat</p>
-                            </div> 
-                            <div class="timeline-panel">
-                                <img  class="img-responsive" src="images/clients/4.png" alt="Image">
-                            </div>                                                       
+                            <% achievements.forEach((achievement) => { %>
+                                <div class="timeline-panel">
+                                    <img  class="img-responsive" src="<%= achievement.img.url %>" alt="Image">
+                                </div>        
+                            <% }) %>                                                    
                         </div>
                     </div>              
                 </div><!-- row -->
