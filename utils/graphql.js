@@ -267,8 +267,59 @@ exports.GetBioPage = async () => {
   `;
 
   const result = await request(graphqlAPI, query); // get our response from api call
-  console.log(result.bioPage)
+ // console.log(result.bioPage)
   return result.bioPage; // retur
 
 }
 
+exports.getShowPage = async () => {
+  const query = gql`query ShowPage {
+    showPage(where: {id: "clfpe8y7tpgna0ak0fnthmhr0"}) {
+      id
+      headerTitle
+      headerImage {
+        url
+      }
+      shows {
+        description
+        date
+        address
+        image {
+          url
+        }
+        title
+        direction {
+          latitude
+          longitude
+        }
+      }
+    }
+  }
+  `;
+  
+  const result = await request(graphqlAPI, query); // get our response from api call
+  console.log(result.showPage)
+  return result.showPage; // retur
+};
+
+exports.getSocialMedia = async () => {
+  const query = gql`query SocialMedia {
+    socialMediaModal(where: {id: "clkz4mssgabs60biu44zhixjk"}) {
+      id
+      socialMedia {
+        twitterUrl
+        spotifyUrl
+        soundCloudUrl
+        instagramUrl
+        facebookUrl
+      }
+    }
+  }
+  `;  
+
+  const result = await request(graphqlAPI, query); // get our response from api call
+  console.log(result.socialMediaModal.socialMedia)
+  return result.socialMediaModal.socialMedia; // retur
+ 
+
+};

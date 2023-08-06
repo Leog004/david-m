@@ -1,5 +1,5 @@
 const catchAsync = require('./../utils/catchAsync');
-const { GetHomePage, GetFooter, GetBioPage } = require('../utils/graphql');
+const { GetHomePage, GetFooter, GetBioPage, getShowPage, getSocialMedia } = require('../utils/graphql');
 const { convertToMultipleParagraphs } = require('../utils/dataHelper');
 
 
@@ -15,80 +15,51 @@ exports.getHomePage = catchAsync ( async (req, res) => {
     });
 });
 
-exports.getContactPage = async (req, res) => {
+exports.getContactPage = catchAsync( async (req, res) => {
     const footer = await GetFooter();
+    const socialMedia = await getSocialMedia();
     res.status(200).render('contact',{
         Title: 'Mathew Maciel - Contact Page',
         footer,
+        socialMedia,
     });
-}
+});
 
 
 exports.getBioPage = catchAsync ( async (req, res) => {
     const footer = await GetFooter();
     const bioPage = await GetBioPage();
+    const socialMedia = await getSocialMedia();
     
-    // const bioPageInfomationInfo = [
-    //     {
-    //         title: 'Occupation',
-    //         text: 'Musician. Pianist. Trumpeter'
-    //     },
-    //     {
-    //         title: 'Bio',
-    //         text: 'asda'
-    //     },
-    // ]
-
-    const bioPageInfomationInfo = [];
-    // bioPage.achievements = {
-    //         title: 'Occupation',
-    //         subTitle: 'Musician. Pianist. Trumpeter',
-    //         achievement: [{
-    //             title: 'Occupation',
-    //             text: 'Musician. Pianist. Trumpeter',
-    //             img: {
-    //                 url: 'images/clients/4.png',
-    //             }
-    //         },
-    //         {
-    //             title: 'Occupation',
-    //             text: 'Musician. Pianist. Trumpeter',
-    //             img: {
-    //                 url: 'images/clients/4.png',
-    //             }
-    //         },
-    //         {
-    //             title: 'Occupation',
-    //             text: 'Musician. Pianist. Trumpeter',
-    //             img: {
-    //                 url: 'images/clients/4.png',
-    //             }
-    //         },
-    //     ]
-    //     }
 
     res.status(200).render('bio',{
         Title: 'Mathew Maciel - Bio Page',
         footer,
         bioPage,
-        bioPageInfomationInfo,
+        socialMedia,
     });
 });
 
 exports.getGalleryPage = catchAsync ( async (req, res) => {
     const footer = await GetFooter();
+    const socialMedia = await getSocialMedia();
     res.status(200).render('gallery',{
         Title: 'Mathew Maciel - Music Page',
         footer,
+        socialMedia,
     });  
 });
 
 
 exports.getShowPage = catchAsync ( async (req, res) => {
     const footer = await GetFooter();
+    const showPage = await getShowPage();
+    const socialMedia = await getSocialMedia();
     res.status(200).render('shows',{
         Title: 'Mathew Maciel - About Page',
         footer,
+        showPage,
+        socialMedia,
     });
 });
 

@@ -1,0 +1,48 @@
+<% var socialMediaInstagram = socialMedia.instagramUrl || 'Bio'; %>
+<% var socialMediafacebook = socialMedia.facebookUrl || 'David M'; %>                                                           
+<% var socialMediasoundCloud = socialMedia.soundCloudUrl || 'Bio'; %> 
+<% var socialMediaSpotifyUrl = socialMedia.spotifyUrl || 'Bio'; %>
+<% var socialMediaTwitter = socialMedia.twitterUrl || 'Bio'; %> 
+
+<script type="text/javascript">
+    // run on page load
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+    // Get url path and determine if its bio, shows, gallery, or contact
+    var url = window.location.pathname;
+    var page = url.substring(url.lastIndexOf('/') + 1);
+    // for each page we change the title to match Biography, Gallery, Shows or Contact
+
+    let title = '';
+
+    if (page === 'bio') {
+        title = 'Biography';
+    } else if (page === 'shows') {
+        title = 'Shows';
+    } else if (page === 'gallery') {
+        title = 'Gallery';
+    } else if (page === 'contact') {
+        title = 'Contact';
+    } else {
+        title === 'David M';
+    }
+
+    console.log(page, title)
+
+    document.getElementById('header-title').innerHTML = title;
+    
+        });
+
+</script>
+
+<div class="about-info">
+    <h1 style="color:#fff; border-bottom:none !important; margin-bottom:0;" id="header-title"></h1>
+    <ul class="social list-inline">
+        <li><a href="<%= socialMediafacebook %>"><i class="fa fa-facebook"></i></a></li>
+        <li><a href="<%= socialMediaTwitter %>"><i class="fa fa-twitter"></i></a></li>
+        <li><a href="<%= socialMediasoundCloud %>"><i class="fa fa-soundcloud"></i></a></li>
+        <li><a href="<%= socialMediaInstagram %>"><i class="fa fa-instagram"></i></a></li>
+        <li><a href="<%= socialMediaSpotifyUrl %>"><i class="fa fa-spotify"></i></a></li>
+    </ul>                               
+</div>

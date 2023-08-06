@@ -122,25 +122,10 @@
                 <% var bioInfo = bioPage?.bioInformation.info || 'hello'; %>
     
 
-                <% var socialMediaInstagram = bioPage?.socialMedia?.instagramUrl || 'Bio'; %>
-                <% var socialMediafacebook = bioPage?.socialMedia?.facebookUrl || 'David M'; %>                                                           
-                <% var socialMediasoundCloud = bioPage?.socialMedia?.soundCloudUrl || 'Bio'; %> 
-                <% var socialMediaSpotifyUrl = bioPage?.socialMedia?.spotifyUrl || 'Bio'; %>
-                <% var socialMediaTwitter = bioPage?.socialMedia?.twitterUrl || 'Bio'; %> 
-
 
                 <div class="feedback section-padding before-after" style="margin-top:80px;">
                 <div class="entry-post" style="background-image:url('<%=backgroundImage%>'); height:50vh;background-size: cover; background-repeat: no-repeat;background-position: center;">
-                            <div class="about-info">
-                                <h1 style="color:#fff; border-bottom:none !important; margin-bottom:0;">Biography</h1>
-                                <ul class="social list-inline">
-                                    <li><a href="<%=socialMediafacebook%>"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="<%=socialMediaTwitter%>"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="<%=socialMediasoundCloud%>"><i class="fa fa-soundcloud"></i></a></li>
-                                    <li><a href="<%=socialMediaInstagram%>"><i class="fa fa-instagram"></i></a></li>
-                                    <li><a href="<%=socialMediasoundCloud%>"><i class="fa fa-rss"></i></a></li>
-                                </ul>                               
-                            </div>                
+                    <% include partials/social %>            
                 </div>                     
         <div class="artist-section before-after section-padding bg-white">
             <div class="artist-detail">
@@ -154,9 +139,9 @@
                         <div class="col-sm-8">
                             <div class="artist-info">
                                 <ul class="list-inline">
-                                    <li><a href="<%=socialMediafacebook%>"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="<%=socialMediaTwitter%>"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="<%=socialMediaInstagram%>"><i class="fa fa-instagram"></i></a></li>
+                                    <li><a href="<%=socialMedia.facebookUrl%>"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="<%=socialMedia.twitterUrl%>"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="<%=socialMedia.instagramUrl%>"><i class="fa fa-instagram"></i></a></li>
                                 </ul> 
                                 <h1><%=bioTitle%></h1> 
                                 <h4><%=bioSubtitle%></h4>
@@ -170,12 +155,12 @@
                     </div><!-- row -->
                     
                     <!-- if  bioPageInfomationInfo-->
-                    <% if (bioPageInfomationInfo.length > 0) { %>
+                    <% if (bioPage?.bioInformation.length > 0) { %>
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="artist-info" style="padding: 0;">
                                 <div class="bio-info-container" id="bioInfo">
-                                    <% bioPageInfomationInfo.forEach((info)=> { %>
+                                    <% bioPage?.bioInformation.forEach((info)=> { %>
                                         <div class="bio-info"><h5><%= info.title %> </h5> <%= info.text %></div>
                                 <% }) %>    
                                 </div>
@@ -190,7 +175,7 @@
 
         <div class="musical-awards section-padding before-after text-center bg-white">
     <!-- if bioPage.recentWork -->
-        <% if (bioPage.recentWork) { %>
+        <% if (bioPage?.recentWork) { %>
 
             <% var recentWorkTitle = bioPage?.recentWork?.title || 'Recent Work'; %>
             <% var recentWorkSubtitle = bioPage?.recentWork?.subTitle || 'Musical Pieces'; %>
