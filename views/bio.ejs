@@ -137,7 +137,7 @@
 
 
                 <div class="feedback section-padding before-after" style="margin-top:80px;">
-                <div class="entry-post" style="background-image:url('<%=backgroundImage%>'); height:50vh;background-size: cover; background-repeat: no-repeat;background-position: bottom;">
+                <div class="entry-post" style="background-image:url('<%=backgroundImage%>'); height:50vh;background-size: cover; background-repeat: no-repeat;background-position: center;">
                             <div class="about-info">
                                 <h1 style="color:#fff; border-bottom:none !important; margin-bottom:0;">Biography</h1>
                                 <ul class="social list-inline">
@@ -175,6 +175,9 @@
                             </div>
                         </div>
                     </div><!-- row -->
+                    
+                    <!-- if  bioPageInfomationInfo-->
+                    <% if (bioPageInfomationInfo.length > 0) { %>
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="artist-info" style="padding: 0;">
@@ -192,6 +195,7 @@
                             </div>  
                         </div>
                     </div>
+                    <% } %>
                 </div><!-- container -->
             </div><!-- artist detail -->
         </div><!-- feedback -->   
