@@ -28,16 +28,18 @@ exports.getBioPage = catchAsync ( async (req, res) => {
     const footer = await GetFooter();
     const bioPage = await GetBioPage();
     
-    const bioPageInfomationInfo = [
-        {
-            title: 'Occupation',
-            text: 'Musician. Pianist. Trumpeter'
-        },
-        {
-            title: 'Bio',
-            text: 'asda'
-        },
-    ]
+    // const bioPageInfomationInfo = [
+    //     {
+    //         title: 'Occupation',
+    //         text: 'Musician. Pianist. Trumpeter'
+    //     },
+    //     {
+    //         title: 'Bio',
+    //         text: 'asda'
+    //     },
+    // ]
+
+    const bioPageInfomationInfo = [];
 
     res.status(200).render('bio',{
         Title: 'Mathew Maciel - Bio Page',
