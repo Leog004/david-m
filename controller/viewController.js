@@ -1,6 +1,6 @@
 const catchAsync = require('./../utils/catchAsync');
 const { GetHomePage, GetFooter, GetBioPage } = require('../utils/graphql');
-
+const { convertToMultipleParagraphs } = require('../utils/dataHelper');
 
 
 
@@ -27,10 +27,23 @@ exports.getContactPage = async (req, res) => {
 exports.getBioPage = catchAsync ( async (req, res) => {
     const footer = await GetFooter();
     const bioPage = await GetBioPage();
+    
+    const bioPageInfomationInfo = [
+        {
+            title: 'Occupation',
+            text: 'Musician. Pianist. Trumpeter'
+        },
+        {
+            title: 'Bio',
+            text: 'asda'
+        },
+    ]
+
     res.status(200).render('bio',{
         Title: 'Mathew Maciel - Bio Page',
         footer,
-        bioPage
+        bioPage,
+        bioPageInfomationInfo,
     });
 });
 

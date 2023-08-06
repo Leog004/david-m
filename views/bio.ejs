@@ -83,7 +83,18 @@
         .showcase-overlay {
         
             background-color:rgb(0,0,0,0.4) !important;
-        }        
+        }
+
+        .bio-info-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 2rem;
+            padding-top: 1rem;
+            background: #f9f9f9;
+            padding: 2rem;
+            box-shadow: #fff;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        }
         
         @media (max-width: 991px){
          .homevid{
@@ -108,6 +119,7 @@
                 <% var bioTitle = bioPage?.bioInformation.title || 'hello'; %>
                 <% var bioSubtitle = bioPage?.bioInformation.subTitle || 'hello'; %>
                 <% var bioParagraph = bioPage?.bioInformation.paragraph || 'hello'; %>
+                <% var bioInfo = bioPage?.bioInformation.info || 'hello'; %>
 
                 
                 <% var featureVideoImage = bioPage?.featureVideo?.image?.url || '/images/DavidP/IMG_6469.png'; %>
@@ -154,28 +166,40 @@
                                     <li><a href="<%=socialMediaInstagram%>"><i class="fa fa-instagram"></i></a></li>
                                 </ul> 
                                 <h1><%=bioTitle%></h1> 
-                                <h4><%=bioSubtitle%></h4>  
-                                <p><%=bioParagraph%></p>   
-                                <address>
-                                    <ul class="menu">
-                                        <li><h5>Name:</h5>DAVID MESQUITIC</li>
-                                        <li><h5>Occupation: </h5>Musician. Pianist. Trumpeter</li>
-                                        <li><h5>Education: </h5> Parklane Academy,</li>
-                                    </ul>
-                                    <ul class="menu sub">
-                                        <li><h5>Place of Birth: </h5>McComb, Mississippi</li>
-                                        <li><h5>Birth Date: </h5>December 2, 1981 (age 34)</li>                                        
-                                        <li><h5>Home town: </h5>Kentwood, Louisiana, U.S.</li>
-                                    </ul>
-                                </address>                     
+                                <h4><%=bioSubtitle%></h4>
+                                <% bioParagraph.forEach((paragraphs)=> { %>
+                                        <p>
+                                            <%= paragraphs %>
+                                        </p>
+                                <% }) %>       
                             </div>
                         </div>
                     </div><!-- row -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="artist-info" style="padding: 0;">
+                                <div class="bio-info-container" id="bioInfo">
+                                    <% bioPageInfomationInfo.forEach((info)=> { %>
+                                        <div class="bio-info"><h5><%= info.title %> </h5> <%= info.text %></div>
+                                <% }) %>    
+                                        <!-- <div class="bio-info"><h5>Name:</h5>DAVID MESQUITIC</div>
+                                        <div class="bio-info"><h5>Occupation: </h5>Musician. Pianist. Trumpeter</div>
+                                        <div class="bio-info"><h5>Education: </h5> Parklane Academy,</div>
+                                        <div class="bio-info"><h5>Place of Birth: </h5>McComb, Mississippi</div>
+                                        <div class="bio-info"><h5>Birth Date: </h5>December 2, 1981 (age 34)</div>                                        
+                                        <div class="bio-info"><h5>Home town: </h5>Kentwood, Louisiana, U.S.</div> -->
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
                 </div><!-- container -->
             </div><!-- artist detail -->
         </div><!-- feedback -->   
         
+
         <div class="musical-awards section-padding before-after text-center bg-white">
+    <!-- if bioPage.recentWork -->
+        <% if (bioPage.recentWork) { %>
             <div class="section-title">
                 <h4>Recent Work</h4>
                 <h2>Musical Pieces</h2>
@@ -225,7 +249,13 @@
                         </div>
                     </div>
                 </div>
-            </div>            
+            </div>        
+            <% } %>
+
+            <!-- if bioPage.achievements -->
+
+            <% if (bioPage.achievements) { %>
+            
             <div class="section-title">
                 <h4>Achievement</h4>
                 <h2>Musical awards</h2>
@@ -268,8 +298,10 @@
                     </div>              
                 </div><!-- row -->
             </div><!-- container -->
+            <% } %>
         </div><!-- musical awards -->        
         
+
         
 <!-- partials footer -->
 <% include partials/footer %>
@@ -291,6 +323,7 @@
         <script src="js/jquery.spinner.min.js"></script> 
         <script src="js/cubeportfolio.min.js"></script>    
         <script src="js/jplayer.source.js"></script>
-        <script src="js/main.js"></script>         
+        <script src="js/main.js"></script>
+
     </body>
 </html>

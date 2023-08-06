@@ -177,6 +177,8 @@
 			</div><!-- container -->
         </div><!-- home banner -->
 
+        <!-- display only if homePage.bioCardInformation -->
+        <% if (homePage.bioCardInformation) { %>
         <div class="about-section about about-biography bg-image section-padding before-after">
             <div class="section-title">
                 <h1>About me</h1>
@@ -214,6 +216,7 @@
             </div><!-- about content -->
         </div><!-- about section --> 
 
+        <% } %>
 <!-- partials footer -->
 <% include partials/footer %>
 
