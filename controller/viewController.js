@@ -55,11 +55,28 @@ exports.getShowPage = catchAsync ( async (req, res) => {
     const footer = await GetFooter();
     const showPage = await getShowPage();
     const socialMedia = await getSocialMedia();
+
+    // Parse query parameter to determine sorting order
+    const queryParams = new URLSearchParams(req.query);
+    const descendingOrder = queryParams.get('order') === 'descend';
+
+    console.log(descendingOrder);
+
+    // Sort events based on date in ascending order
+    showPage.shows.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+    // If descending order is requested, reverse the array
+    if (descendingOrder) {
+        showPage.shows.reverse();
+    }
+
+        
     res.status(200).render('shows',{
         Title: 'Mathew Maciel - About Page',
         footer,
         showPage,
         socialMedia,
+        descendingOrder,
     });
 });
 

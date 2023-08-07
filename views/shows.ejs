@@ -56,6 +56,11 @@
         .btn.btn-primary::hover{
             color:#000 !important;
         }        
+
+        .festival-info {
+            box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+            cursor: pointer;
+        }
         
         @media (max-width: 991px){
          .homevid{
@@ -73,21 +78,56 @@
     <body>
         <% include partials/header %>
 
-                <div class="feedback section-padding before-after" style="margin-top:80px;">
-                <div class="entry-post" style="background-image:url('images/DavidP/IMG_6450.jpg'); height:50vh;background-size: cover; background-repeat: no-repeat;background-position: center;">
+                        <!-- Set all my variables -->
+                        <% var backgroundImage = showPage?.headerImage?.url || '/images/DavidP/IMG_6469.png'; %>
+
+
+        <div class="feedback section-padding before-after" style="margin-top:80px;">
+                <div class="entry-post" style="background-image:url('<%= backgroundImage %>'); height:50vh;background-size: cover; background-repeat: no-repeat;background-position: center;">
                     <% include partials/social %>              
                 </div>                     
         </div><!-- feedback -->   
         
-<div class="ucoming-events section-padding before-after">
+        <% if (showPage?.shows.length > 0) { %>
+
+            <script>
+                function showIframe(index){
+                    var iframe = document.getElementById(`${index}`);
+                    var btn = document.getElementById(`${index}-btn`);
+                    // check if iframe is already displayed and change text to hide map
+                    if (iframe.style.display === "block") {
+                        iframe.style.display = "none";
+                        btn.innerText = "view Map";
+                    } else {
+                        iframe.style.display = "block";
+                        btn.innerText = "hide Map";
+                    }
+                }
+            </script>
+        <div class="ucoming-events section-padding before-after">
             <div class="container">
-                <ul class="schedule-menu list-inline">
+                <div class="section-title">
+                    <h4>Upcoming Shows</h4>
+                    <h2></h2>
+                </div>
+                <ul class="schedule-menu list-inline" style="box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;">
                     <li><a href="#">Date</a>
                     <div class="dropdown category-dropdown"> 
-                        <a data-toggle="dropdown" href="#"><span class="change-text">(Descend)</span><i class="fa fa-angle-down"></i></a>
+                        <a data-toggle="dropdown" href="#">
+                            <span class="change-text">
+                                <% if (descendingOrder) { %>
+                                    (Descend)
+                                    <i class="fa fa-angle-down"></i>
+                                <% } else { %>
+                                    (Ascend)
+                                    <i class="fa fa-angle-up"></i>
+                                <% } %>
+                            </span>
+                           
+                        </a>
                         <ul class="dropdown-menu category-change">
-                            <li><a href="#">Ascend</a></li>
-                            <li><a href="#">Descend</a></li>
+                            <li><a href="?order=ascend">Ascend</a></li>
+                            <li><a href="?order=descend">Descend</a></li>
                         </ul>                               
                     </div>
                     </li>
@@ -96,169 +136,57 @@
                 </ul><!-- schedule menu -->                 
 
                 <ul>
-                    <li class="festival-info">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="festival-image">
-                                    <div class="image-overlay"></div>
-                                    <img class="img-fluid" src="images/gallery/5.jpg" alt="Image">
-                                    <div class="time">
-                                        <h1>11 <span>Fev</span></h1>
-                                    </div>                                        
+                    <% showPage?.shows.forEach((show, index)=> { %>
+                        <% let image = show?.image?.url || 'images/gallery/5.jpg'; %>
+                        <li class="festival-info">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="festival-image">
+                                        <div class="image-overlay"></div>
+                                        <img class="img-fluid" src="<%= image %>" alt="Image">
+                                        <div class="time">
+                                            <!-- get show?.date [2023-11-02] to output day = 11, month = feb -->
+                                            <h1><%= show?.date?.split('-')[2] %> <span><%= show?.date?.split('-')[1] %></span></h1>
+                                            <!-- <h1>11 <span>Fev</span></h1> -->
+                                        </div>                                        
+                                    </div>
+                                    <div class="events-title">
+                                        <h2><%= show?.title %></h2>
+                                        <h5><%= show?.description %> </h5>
+                                    </div>                                
                                 </div>
-                                <div class="events-title">
-                                    <h2>Music festival</h2>
-                                    <h5>11 February, 2018, 9:00 am - 02:00 pm</h5>
-                                </div>                                
-                            </div>
-                            <div class="col-md-3 no-padding">
-                                <div class="address">
-                                    <h5>123 Main Street, California, CA 10234, USA</h5>
+                                <div class="col-md-3 no-padding">
+                                    <div class="address">
+                                        <h5><%= show?.address %></h5>
+                                        <button id="show-<%= index %>-btn" class="btn btn-secondary btn-sm" style="display: block; margin: 10px 0;" type="button" onclick="javascript:showIframe('show-<%= index %>')">view map</button>
+                                        <!-- if show?.direction exists -->
+                                        <% if (show?.direction) { %>
+                                            <%
+                                                <!-- let locationURL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3222.7623022103887!2d${location.longitude}!3d${location.latitude}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80953b16787741f1%3A0x2e12e9e1ab9cdef0!2sYour%20Location%20Name!5e0!3m2!1sen!2sus!4v1628361791337!5m2!1sen!2sus"; -->
+                                                let locationURL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3222.7623022103887!2d${longitude}!3d${latitude}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80953b16787741f1%3A0x2e12e9e1ab9cdef0!2sYour%20Location%20Name!5e0!3m2!1sen!2sus!4v1628361791337!5m2!1sen!2sus&q=${latitude},${longitude}";
+
+                                                // Replace longitude and latitude placeholders with actual values
+                                                locationURL = locationURL.replace("${longitude}", show.direction.longitude);
+                                                locationURL = locationURL.replace("${latitude}", show.direction.latitude);
+                                        %>
+
+                                            <iframe class='show-iframe' style="display:none;" id="show-<%= index %>" src="<%= locationURL %>" width="450" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                                        <% } %>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-3 no-padding">
-                                <div class="button">
-                                    <a href="#" class="btn btn-primary">Get a Ticket<i class="fa fa-chevron-circle-right"></i></a>
+                                <div class="col-md-3 no-padding">
+                                    <div class="button">
+                                        <a href="<%= show.eventLink %>" class="btn btn-primary">Get a Ticket<i class="fa fa-chevron-circle-right"></i></a>
+                                    </div>
                                 </div>
-                            </div>
-                        </div><!-- row -->
-                    </li>
-                    <li class="festival-info">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="festival-image">
-                                    <div class="image-overlay"></div>
-                                    <img class="img-fluid" src="images/gallery/5.jpg" alt="Image">
-                                    <div class="time">
-                                        <h1>15 <span>Fev</span></h1>
-                                    </div>                                        
-                                </div>
-                                <div class="events-title">
-                                    <h2>The best night of your whole life</h2>
-                                    <h5>11 February, 2018, 9:00 am - 02:00 pm</h5>
-                                </div>                                
-                            </div>
-                            <div class="col-md-3 no-padding">
-                                <div class="address">
-                                    <h5>123 Main Street, California, CA 10234, USA</h5>
-                                </div>
-                            </div>
-                            <div class="col-md-3 no-padding">
-                                <div class="button">
-                                    <a href="#" class="btn btn-primary">Get a Ticket<i class="fa fa-chevron-circle-right"></i></a>
-                                </div>
-                            </div>
-                        </div><!-- row -->
-                    </li>
-                    <li class="festival-info">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="festival-image">
-                                    <div class="image-overlay"></div>
-                                    <img class="img-fluid" src="images/gallery/5.jpg" alt="Image">
-                                    <div class="time">
-                                        <h1>18 <span>Fev</span></h1>
-                                    </div>                                        
-                                </div>
-                                <div class="events-title">
-                                    <h2>Wonderful life, our night life</h2>
-                                    <h5>11 February, 2018, 9:00 am - 02:00 pm</h5>
-                                </div>                                
-                            </div>
-                            <div class="col-md-3 no-padding">
-                                <div class="address">
-                                    <h5>123 Main Street, California, CA 10234, USA</h5>
-                                </div>
-                            </div>
-                            <div class="col-md-3 no-padding">
-                                <div class="button">
-                                    <a href="#" class="btn btn-primary">Get a Ticket<i class="fa fa-chevron-circle-right"></i></a>
-                                </div>
-                            </div>
-                        </div><!-- row -->
-                    </li><li class="festival-info">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="festival-image">
-                                    <div class="image-overlay"></div>
-                                    <img class="img-fluid" src="images/gallery/5.jpg" alt="Image">
-                                    <div class="time">
-                                        <h1>21 <span>Fev</span></h1>
-                                    </div>                                        
-                                </div>
-                                <div class="events-title">
-                                    <h2>Playbit Events 2018</h2>
-                                    <h5>11 February, 2018, 9:00 am - 02:00 pm</h5>
-                                </div>                                
-                            </div>
-                            <div class="col-md-3 no-padding">
-                                <div class="address">
-                                    <h5>123 Main Street, California, CA 10234, USA</h5>
-                                </div>
-                            </div>
-                            <div class="col-md-3 no-padding">
-                                <div class="button">
-                                    <a href="#" class="btn btn-primary">Get a Ticket<i class="fa fa-chevron-circle-right"></i></a>
-                                </div>
-                            </div>
-                        </div><!-- row -->
-                    </li><li class="festival-info">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="festival-image">
-                                    <div class="image-overlay"></div>
-                                    <img class="img-fluid" src="images/gallery/5.jpg" alt="Image">
-                                    <div class="time">
-                                        <h1>23 <span>Fev</span></h1>
-                                    </div>                                        
-                                </div>
-                                <div class="events-title">
-                                    <h2>Festival 2018</h2>
-                                    <h5>11 February, 2018, 9:00 am - 02:00 pm</h5>
-                                </div>                                
-                            </div>
-                            <div class="col-md-3 no-padding">
-                                <div class="address">
-                                    <h5>123 Main Street, California, CA 10234, USA</h5>
-                                </div>
-                            </div>
-                            <div class="col-md-3 no-padding">
-                                <div class="button">
-                                    <a href="#" class="btn btn-primary">Get a Ticket<i class="fa fa-chevron-circle-right"></i></a>
-                                </div>
-                            </div>
-                        </div><!-- row -->
-                    </li><li class="festival-info">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="festival-image">
-                                    <div class="image-overlay"></div>
-                                    <img class="img-fluid" src="images/gallery/5.jpg" alt="Image">
-                                    <div class="time">
-                                        <h1>28 <span>Fev</span></h1>
-                                    </div>                                        
-                                </div>
-                                <div class="events-title">
-                                    <h2>Beyonce surprises track</h2>
-                                    <h5>11 February, 2018, 9:00 am - 02:00 pm</h5>
-                                </div>                                
-                            </div>
-                            <div class="col-md-3 no-padding">
-                                <div class="address">
-                                    <h5>123 Main Street, California, CA 10234, USA</h5>
-                                </div>
-                            </div>
-                            <div class="col-md-3 no-padding">
-                                <div class="button">
-                                    <a href="#" class="btn btn-primary">Get a Ticket<i class="fa fa-chevron-circle-right"></i></a>
-                                </div>
-                            </div>
-                        </div><!-- row -->
-                    </li>                
+                            </div><!-- row -->
+                        </li>
+                    <% }) %>            
                 </ul>                               
             </div><!-- row -->             
         </div>  
   
+        <% } %>
        
 <!-- partials footer -->
 <% include partials/footer %>

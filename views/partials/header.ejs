@@ -46,12 +46,16 @@
         } else if (filename === 'shows') {
             console.log('shows');
             navbarItems[2].classList.add('active');
-        } else if (filename === 'gallery') {
-            console.log('gallery');
+        } else if (filename === 'music') {
+            console.log('music');
             navbarItems[3].classList.add('active');
+        }
+         else if (filename === 'gallery') {
+            console.log('gallery');
+            navbarItems[4].classList.add('active');
         } else if (filename === 'contact') {
             console.log('contact');
-            navbarItems[4].classList.add('active');
+            navbarItems[5].classList.add('active');
         } else {
             console.log('home');
             navbarItems[0].classList.add('active');
@@ -112,6 +116,23 @@
                     <li>
                         <a href="/shows">
                             Shows
+                            <div class="equalizer">
+                                <span class="bar bar-1"></span>
+                                <span class="bar bar-2"></span>
+                                <span class="bar bar-3"></span>
+                                <span class="bar bar-4"></span>
+                                <span class="bar bar-5"></span>
+                                <span class="bar bar-6"></span>
+                                <span class="bar bar-7"></span>
+                                <span class="bar bar-8"></span>
+                                <span class="bar bar-9"></span>
+                                <span class="bar bar-10"></span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/music">
+                            Music
                             <div class="equalizer">
                                 <span class="bar bar-1"></span>
                                 <span class="bar bar-2"></span>

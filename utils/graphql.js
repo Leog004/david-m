@@ -288,6 +288,7 @@ exports.getShowPage = async () => {
           url
         }
         title
+        eventLink
         direction {
           latitude
           longitude
