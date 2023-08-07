@@ -79,7 +79,7 @@
         <% include partials/header %>
 
                         <!-- Set all my variables -->
-                        <% var backgroundImage = showPage?.headerImage?.url || '/images/DavidP/IMG_6469.png'; %>
+                        <% var backgroundImage = showPage?.headerImage?.url || 'images/DavidP/IMG_6469.png'; %>
 
 
         <div class="feedback section-padding before-after" style="margin-top:80px;">
@@ -139,7 +139,7 @@
                     <% showPage?.shows.forEach((show, index)=> { %>
                         <% 
                             <!-- if no show?.image?.url exists. Get random image from images/jazzEventImage/image1-image3.jpg -->
-                            let image = show?.image?.url || `/images/jazzEventImage/image${Math.floor(Math.random() * 3) + 1}.jpg`;
+                            let image = show?.image?.url || `images/jazzEventImage/image${Math.floor(Math.random() * 3) + 1}.jpg`;
                         
                         %>
                         <li class="festival-info">
