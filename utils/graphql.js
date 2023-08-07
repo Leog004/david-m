@@ -324,3 +324,25 @@ exports.getSocialMedia = async () => {
  
 
 };
+
+exports.getGalleryPage = async () => {
+  const qiuery = gql`query GetGalleryPage {
+    galleryPage(where: {id: "clfqe6vj9860a0biqqh187exf"}) {
+      id
+      headerTitle
+      headerImage {
+        url
+      }
+      gallery {
+        image {
+          url
+        }
+      }
+    }
+  }
+  `;
+  
+  const result = await request(graphqlAPI, qiuery); // get our response from api call
+  console.log(result.galleryPage)
+  return result.galleryPage; // retur
+};

@@ -66,59 +66,33 @@
     </style>
     </head>
     <body>
+        <!-- Set all my variables -->
+        <% var backgroundImage = galleryPage?.headerImage?.url || '/images/DavidP/IMG_6469.png'; %>
+
         <% include partials/header %>
- <div class="feedback section-padding before-after" style="margin-top:80px;">        
-                <div class="entry-post" style="background-image:url('images/DavidP/IMG_4581.JPG'); height:50vh;background-size: cover; background-repeat: no-repeat;background-position: top;">
+            <div class="feedback section-padding before-after" style="margin-top:80px;">        
+                <div class="entry-post" style="background-image:url('<%= backgroundImage %>'); height:50vh;background-size: cover; background-repeat: no-repeat;background-position: center;">
                     <% include partials/social %>               
                 </div> 
-</div>
-<div class="gallery-hive section-padding before-after bg-white" style="margin-top:100px;">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="gallery-item">
-                            <img class="img-responsive" src="images/DavidP/IMG_6450.jpg" alt="Image">
-                            <div class="gallery-overlay"></div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="gallery-item">
-                            <img class="img-responsive" src="images/DavidP/IMG_6541.jpg" alt="Image">
-                            <div class="gallery-overlay"></div>
-                        </div>
-                    </div>
-                </div><!-- row -->
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="gallery-item">
-                            <img class="img-responsive" src="images/DavidP/IMG_6469.png" alt="Image">
-                            <div class="gallery-overlay"></div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="gallery-item">
-                            <img class="img-responsive" src="images/DavidP/IMG_4752.JPG" alt="Image">
-                            <div class="gallery-overlay"></div>
-                        </div>
-                    </div>
-                </div><!-- row -->
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="gallery-item">
-                            <img class="img-responsive" src="images/DavidP/IMG_4710.JPG" alt="Image">
-                            <div class="gallery-overlay"></div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="gallery-item">
-                            <img class="img-responsive" src="images/DavidP/IMG_4739.JPG" alt="Image">
-                            <div class="gallery-overlay"></div>
-                        </div>
-                    </div>
-                </div><!-- row -->
-            </div><!-- container -->
-        </div><!-- gallery hive -->          
+            </div>
 
+            <!-- if galleryPage.gallery.length > 0 -->
+            <% if (galleryPage?.gallery?.image.length > 0) { %>
+                <div class="gallery-hive section-padding before-after bg-white" style="margin-top:100px;">
+                    <div class="container">
+                        <div class="row">
+                            <% galleryPage.gallery?.image.forEach((el, i) => { %>
+                                <div class="col-sm-6">
+                                    <div class="gallery-item">
+                                        <img class="img-responsive" src="<%= el.url %>" alt="Image">
+                                        <div class="gallery-overlay"></div>
+                                    </div>
+                                </div>
+                            <% }); %>
+                        </div><!-- row -->
+                    </div><!-- container -->
+                </div><!-- gallery hive -->
+            <% } %>
 
 <!-- partials footer -->
 <% include partials/footer %>
