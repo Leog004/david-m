@@ -139,9 +139,26 @@
                         <div class="col-sm-8">
                             <div class="artist-info">
                                 <ul class="list-inline">
-                                    <li><a href="<%=socialMedia.facebookUrl%>"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="<%=socialMedia.twitterUrl%>"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="<%=socialMedia.instagramUrl%>"><i class="fa fa-instagram"></i></a></li>
+                                    <!-- if socialMedia.facebookUrl -->
+                                    <% if (socialMedia.facebookUrl) { %>
+                                        <li><a href="<%=socialMedia.facebookUrl%>"><i class="fa fa-facebook"></i></a></li>
+                                    <% } %>
+                                    <!-- if socialMedia.twitterUrl -->
+                                    <% if (socialMedia.twitterUrl) { %>
+                                        <li><a href="<%=socialMedia.twitterUrl%>"><i class="fa fa-twitter"></i></a></li>
+                                    <% } %>
+                                    <!-- if socialMedia.soundCloudUrl -->
+                                    <% if (socialMedia.soundCloudUrl) { %>
+                                        <li><a href="<%=socialMedia.soundCloudUrl%>"><i class="fa fa-soundcloud"></i></a></li>
+                                    <% } %>
+                                    <!-- if socialMedia.instagramUrl -->
+                                    <% if (socialMedia.instagramUrl) { %>
+                                        <li><a href="<%=socialMedia.instagramUrl%>"><i class="fa fa-instagram"></i></a></li>
+                                    <% } %>
+                                    <!-- if socialMedia.spotifyUrl -->
+                                    <% if (socialMedia.spotifyUrl) { %>
+                                        <li><a href="<%=socialMedia.spotifyUrl%>"><i class="fa fa-spotify"></i></a></li>
+                                    <% } %>
                                 </ul> 
                                 <h1><%=bioTitle%></h1> 
                                 <h4><%=bioSubtitle%></h4>

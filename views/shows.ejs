@@ -137,7 +137,11 @@
 
                 <ul>
                     <% showPage?.shows.forEach((show, index)=> { %>
-                        <% let image = show?.image?.url || 'images/gallery/5.jpg'; %>
+                        <% 
+                            <!-- if no show?.image?.url exists. Get random image from images/jazzEventImage/image1-image3.jpg -->
+                            let image = show?.image?.url || `/images/jazzEventImage/image${Math.floor(Math.random() * 3) + 1}.jpg`;
+                        
+                        %>
                         <li class="festival-info">
                             <div class="row">
                                 <div class="col-md-6">
@@ -158,9 +162,10 @@
                                 <div class="col-md-3 no-padding">
                                     <div class="address">
                                         <h5><%= show?.address %></h5>
-                                        <button id="show-<%= index %>-btn" class="btn btn-secondary btn-sm" style="display: block; margin: 10px 0;" type="button" onclick="javascript:showIframe('show-<%= index %>')">view map</button>
                                         <!-- if show?.direction exists -->
                                         <% if (show?.direction) { %>
+                                            <button id="show-<%= index %>-btn" class="btn btn-secondary btn-sm" style="display: block; margin: 10px 0;" type="button" onclick="javascript:showIframe('show-<%= index %>')">view map</button>
+
                                             <%
                                                 <!-- let locationURL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3222.7623022103887!2d${location.longitude}!3d${location.latitude}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80953b16787741f1%3A0x2e12e9e1ab9cdef0!2sYour%20Location%20Name!5e0!3m2!1sen!2sus!4v1628361791337!5m2!1sen!2sus"; -->
                                                 let locationURL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3222.7623022103887!2d${longitude}!3d${latitude}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80953b16787741f1%3A0x2e12e9e1ab9cdef0!2sYour%20Location%20Name!5e0!3m2!1sen!2sus!4v1628361791337!5m2!1sen!2sus&q=${latitude},${longitude}";

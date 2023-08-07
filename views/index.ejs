@@ -94,11 +94,6 @@
         <% var bioCardTitle = homePage?.bioCardInformation?.title || 'David M'; %>      
         <% var bioCardSubtitle = homePage?.bioCardInformation?.subTitle || 'Bio'; %>           
         <% var bioCardImage = homePage?.bioCardInformation?.bioCardImage?.url || '/images/DavidP/IMG_6469.png'; %>                                          
-        <% var socialMediaInstagram = homePage?.socialMedia?.instagramUrl || 'Bio'; %>
-        <% var socialMediafacebook = homePage?.socialMedia?.facebookUrl || 'David M'; %>                                                           
-        <% var socialMediasoundCloud = homePage?.socialMedia?.soundCloudUrl || 'Bio'; %> 
-        <% var socialMediaSpotifyUrl = homePage?.socialMedia?.spotifyUrl || 'Bio'; %>
-        <% var socialMediaTwitter = homePage?.socialMedia?.twitterUrl || 'Bio'; %> 
         
 
         <div class="home-banner biography" style="background: rgba(0,0,0,.2);">
@@ -122,11 +117,26 @@
                             </div> <!-- gallery tab --> 
                         </div>
                     <ul class="social list-inline">
-                        <li><a href="<%=socialMediafacebook%>"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="<%=socialMediaTwitter%>"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="<%=socialMediasoundCloud%>"><i class="fa fa-soundcloud"></i></a></li>
-                        <li><a href="<%=socialMediaInstagram%>"><i class="fa fa-instagram"></i></a></li>
-                        <li><a href="<%=socialMediasoundCloud%>"><i class="fa fa-rss"></i></a></li>
+                                    <!-- if socialMedia.facebookUrl -->
+                                    <% if (socialMedia.facebookUrl) { %>
+                                        <li><a href="<%=socialMedia.facebookUrl%>"><i class="fa fa-facebook"></i></a></li>
+                                    <% } %>
+                                    <!-- if socialMedia.twitterUrl -->
+                                    <% if (socialMedia.twitterUrl) { %>
+                                        <li><a href="<%=socialMedia.twitterUrl%>"><i class="fa fa-twitter"></i></a></li>
+                                    <% } %>
+                                    <!-- if socialMedia.soundCloudUrl -->
+                                    <% if (socialMedia.soundCloudUrl) { %>
+                                        <li><a href="<%=socialMedia.soundCloudUrl%>"><i class="fa fa-soundcloud"></i></a></li>
+                                    <% } %>
+                                    <!-- if socialMedia.instagramUrl -->
+                                    <% if (socialMedia.instagramUrl) { %>
+                                        <li><a href="<%=socialMedia.instagramUrl%>"><i class="fa fa-instagram"></i></a></li>
+                                    <% } %>
+                                    <!-- if socialMedia.spotifyUrl -->
+                                    <% if (socialMedia.spotifyUrl) { %>
+                                        <li><a href="<%=socialMedia.spotifyUrl%>"><i class="fa fa-spotify"></i></a></li>
+                                    <% } %>
                     </ul>
                 </div>
                 <div id="audio-player-wrapper" class="audio-player">

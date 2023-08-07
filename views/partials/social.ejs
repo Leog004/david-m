@@ -1,8 +1,8 @@
-<% var socialMediaInstagram = socialMedia.instagramUrl || 'Bio'; %>
-<% var socialMediafacebook = socialMedia.facebookUrl || 'David M'; %>                                                           
-<% var socialMediasoundCloud = socialMedia.soundCloudUrl || 'Bio'; %> 
-<% var socialMediaSpotifyUrl = socialMedia.spotifyUrl || 'Bio'; %>
-<% var socialMediaTwitter = socialMedia.twitterUrl || 'Bio'; %> 
+<% var socialMediaInstagram = socialMedia.instagramUrl || ''; %>
+<% var socialMediafacebook = socialMedia.facebookUrl || ''; %>                                                           
+<% var socialMediasoundCloud = socialMedia.soundCloudUrl || ''; %> 
+<% var socialMediaSpotifyUrl = socialMedia.spotifyUrl || ''; %>
+<% var socialMediaTwitter = socialMedia.twitterUrl || ''; %> 
 
 <script type="text/javascript">
     // run on page load
@@ -41,10 +41,25 @@
 <div class="about-info">
     <h1 style="color:#fff; border-bottom:none !important; margin-bottom:0;" id="header-title"></h1>
     <ul class="social list-inline">
-        <li><a href="<%= socialMediafacebook %>"><i class="fa fa-facebook"></i></a></li>
-        <li><a href="<%= socialMediaTwitter %>"><i class="fa fa-twitter"></i></a></li>
-        <li><a href="<%= socialMediasoundCloud %>"><i class="fa fa-soundcloud"></i></a></li>
-        <li><a href="<%= socialMediaInstagram %>"><i class="fa fa-instagram"></i></a></li>
-        <li><a href="<%= socialMediaSpotifyUrl %>"><i class="fa fa-spotify"></i></a></li>
+        <!-- if socialMedia.facebookUrl the show -->
+        <% if (socialMedia.facebookUrl) { %>
+            <li><a href="<%= socialMediafacebook %>"><i class="fa fa-facebook"></i></a></li>
+        <% } %>
+        <!-- if socialMedia.twitterUrl the show -->
+        <% if (socialMedia.twitterUrl) { %>
+            <li><a href="<%= socialMediaTwitter %>"><i class="fa fa-twitter"></i></a></li>
+        <% } %>
+        <!-- if socialMedia.soundCloudUrl the show -->
+        <% if (socialMedia.soundCloudUrl) { %>
+            <li><a href="<%= socialMediasoundCloud %>"><i class="fa fa-soundcloud"></i></a></li>
+        <% } %>
+        <!-- if socialMedia.instagramUrl the show -->
+        <% if (socialMedia.instagramUrl) { %>
+            <li><a href="<%= socialMediaInstagram %>"><i class="fa fa-instagram"></i></a></li>
+        <% } %>
+        <!-- if socialMedia.spotifyUrl the show -->
+        <% if (socialMedia.spotifyUrl) { %>
+            <li><a href="<%= socialMediaSpotifyUrl %>"><i class="fa fa-spotify"></i></a></li>
+        <% } %>
     </ul>                               
 </div>

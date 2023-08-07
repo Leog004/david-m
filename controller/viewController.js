@@ -7,11 +7,14 @@ const { convertToMultipleParagraphs } = require('../utils/dataHelper');
 exports.getHomePage = catchAsync ( async (req, res) => {
     const homePage = await GetHomePage();
     const footer = await GetFooter();
+    const socialMedia = await getSocialMedia();
+    
 
     res.status(200).render('index', {
         Title: 'Mathew Maciel - Home Page',
         homePage,
         footer,
+        socialMedia,
     });
 });
 
