@@ -183,11 +183,7 @@ exports.GetHomePage = async () => {
         image {
           url
         }
-      }
-      featuredSong {
-        song {
-          id
-        }
+        stage
       }
       bioCardInformation {
         ... on BioCard {
@@ -201,17 +197,18 @@ exports.GetHomePage = async () => {
           }
         }
       }
-      socialMedia {
-        instagramUrl
-        facebookUrl
-        soundCloudUrl
-        spotifyUrl
-        stage
-        twitterUrl
+      songs(orderBy: isFeatured_DESC) {
+        songTitle
+        songMp3 {
+          url
+        }
+        albumImage {
+          fileName
+          url
+        }
       }
     }
-  }
-  `;
+  }`;
 
   const result = await request(graphqlAPI, query); // get our response from api call
   console.log(result.homePages[0])

@@ -93,8 +93,9 @@
         <% var bioCardParagraph = homePage?.bioCardInformation?.paragraph || 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'; %> 
         <% var bioCardTitle = homePage?.bioCardInformation?.title || 'David M'; %>      
         <% var bioCardSubtitle = homePage?.bioCardInformation?.subTitle || 'Bio'; %>           
-        <% var bioCardImage = homePage?.bioCardInformation?.bioCardImage?.url || '/images/DavidP/IMG_6469.png'; %>                                          
-        
+        <% var bioCardImage = homePage?.bioCardInformation?.bioCardImage?.url || '/images/DavidP/IMG_6469.png'; %>  
+                                                
+        <% var songs = homePage?.songs || []; %>  
 
         <div class="home-banner biography" style="background: rgba(0,0,0,.2);">
             <div class="container" style="position: relative;">
@@ -141,8 +142,13 @@
                 </div>
                 <div id="audio-player-wrapper" class="audio-player">
                     <div class="album-info">
+                        <% 
+                        <!-- if no show?.image?.url exists. Get random image from images/jazzEventImage/image1-image3.jpg -->
+                        let image = '' || `images/jazzEventImage/image${Math.floor(Math.random() * 3) + 1}.jpg`;
+                    
+                    %>
                         <div class="album-cover">
-                            <img  class="img-responsive" src="images/1.jpg" alt="Image">
+                            <img  class="img-responsive" style="width: 40px; height: 40px;" src="<%= image %>" alt="Image">
                         </div>
                     </div>
                     <div id="audio-player">
@@ -231,6 +237,7 @@
 <% include partials/footer %>
 
 
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
         <!-- JS -->
         <script src="js/jquery.min.js"></script>
@@ -247,7 +254,7 @@
         <script src="js/inview.min.js"></script> 
         <script src="js/jquery.spinner.min.js"></script> 
         <script src="js/cubeportfolio.min.js"></script>    
-        <script src="js/jplayer.source.js"></script>
+        <!-- <script src="js/jplayer.source.js"></script> -->
         <script src="js/main.js"></script>        
 
         <script>
@@ -263,6 +270,33 @@
                 bodyPersonal.style.backgroundPosition = "center";
                 bodyPersonal.style.transition = "background-image 0.75s ease-in-out";
             })();
+
+            (function () {
+                var songData = [];
+
+                <% songs.forEach((song) => { %>  // Loop through the songs array using EJS syntax
+                    songData.push({
+                        title: "<%= song.songTitle %>",
+                        mp3: "<%= song.songMp3 %>"
+                    });
+                <% }) %>
+
+                console.log(songData);  // Print the song data for each iteration
+
+                new jPlayerPlaylist({
+                        jPlayer: "#tr-player",
+                        cssSelectorAncestor: "#tr-player-wrapper"
+                    },songData, {
+                        swfPath: "js/jquery.jplayer.swf",
+                        supplied: "mp3",
+                        wmode: "window",
+                        useStateClassSkin: true,
+                        autoBlur: false,
+                        smoothPlayBar: true,
+                        keyEnabled: true,
+                        remainingDuration: true,
+                    });
+                })();
         </script>
     </body>
 </html>
