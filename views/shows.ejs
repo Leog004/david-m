@@ -162,8 +162,17 @@
                 <ul>
                     <% showPage?.shows.forEach((show, index)=> { %>
                         <% 
-                            <!-- if no show?.image?.url exists. Get random image from images/jazzEventImage/image1-image3.jpg -->
-                            let image = show?.image?.url || `images/DavidP/image${Math.floor(Math.random() * 3) + 1}.jpg`;
+                        <!-- if no show?.image?.url exists. Get random image from images/jazzEventImage/image1-image3.jpg -->
+                        <!-- create an array of three url link -->
+                        let images = [
+                            'https://media.istockphoto.com/id/1076840920/vector/music-background.jpg?s=612x612&w=0&k=20&c=bMG2SEUYaurIHAjtRbw7bmjLsXyT7iJUvAM5HjL3G3I=',
+                            'https://cdn.pixabay.com/photo/2022/09/24/17/31/abstract-7476913_640.png',
+                            'https://img.freepik.com/free-vector/aesthetic-jazz-background-musical-instrument-border-blue-vector_53876-156503.jpg',
+                            'https://png.pngtree.com/thumb_back/fh260/background/20210331/pngtree-rock-jazz-music-background-image_599707.jpg',
+                        ];
+
+                        <!-- get random image from images array -->
+                        let image = images[Math.floor(Math.random() * images.length)];
                         
                         %>
                         <li class="festival-info">
