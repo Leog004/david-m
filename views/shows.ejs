@@ -83,7 +83,7 @@
 
 
         <div class="feedback section-padding before-after" style="margin-top:80px;">
-                <div class="entry-post" style="background-image:url('<%= backgroundImage %>'); height:50vh;background-size: cover; background-repeat: no-repeat;background-position: center;">
+                <div class="entry-post" style="background-image:url('<%= backgroundImage %>'); height:50vh;background-size: cover; background-repeat: no-repeat; background-position: 0px -160px;">
                     <% include partials/social %>              
                 </div>                     
         </div><!-- feedback -->   
@@ -163,7 +163,7 @@
                     <% showPage?.shows.forEach((show, index)=> { %>
                         <% 
                             <!-- if no show?.image?.url exists. Get random image from images/jazzEventImage/image1-image3.jpg -->
-                            let image = show?.image?.url || `images/jazzEventImage/image${Math.floor(Math.random() * 3) + 1}.jpg`;
+                            let image = show?.image?.url || `images/DavidP/image${Math.floor(Math.random() * 3) + 1}.jpg`;
                         
                         %>
                         <li class="festival-info">

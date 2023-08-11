@@ -55,6 +55,34 @@
             width:50%;
         }
 
+        .home-content {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: end;
+            padding-bottom: 150px;
+
+        }
+
+        .title-headings {
+            position: absolute;
+            top: 22rem;
+        }
+
+        .social a {
+            color: #fff;
+            font-size: 20px;
+            margin-right: 5px;
+            margin-top: 0;
+            margin-left: 5px;
+            text-shadow: 3px 0px 7px rgba(81,67,21,0.8), -3px 0px 7px rgb(0 0 0 / 100%), 0px 4px 7px rgb(0 0 0 / 100%);
+        }
+        .social {
+            margin-top: 0px;
+        }
 
         @media (max-width: 991px){
         .homevid{
@@ -78,6 +106,20 @@
             .video-gallery.homevid {
                 display: none !important;
             }
+            
+        .title-headings {
+            position: absolute;
+            top: 10rem;
+            left: 50%;
+            transform: translate(-50%, 0);
+            width: 100%;
+        }
+        .social.list-inline {
+            position: absolute !important;
+            bottom: -100px !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+        }
         }
     </style>
     </head>
@@ -97,11 +139,35 @@
                                                 
         <% var songs = homePage?.songs || []; %>  
 
-        <div class="home-banner biography" style="background: rgba(0,0,0,.2);">
-            <div class="container" style="position: relative;">
-                <div class="home-content" style="padding-bottom: 120px;">
-                    <h2><%= heading %></h2>   
-                    <h1><%= subHeading %> </h1>
+        <div class="home-banner biography" style="background: rgba(0,0,0,.2); height: 98vh;">
+            <div class="container" style="position: relative; height: 100%;">
+                <div class="home-content" style="padding-bottom: 140px;">
+                    <div class="title-headings">
+                        <h2><%= heading %></h2>   
+                        <h1 style="text-shadow: 3px 0px 7px rgba(81,67,21,0.8), -3px 0px 7px rgb(0 0 0 / 80%), 0px 4px 7px rgb(0 0 0 / 80%); color:#fff;"><%= subHeading %> </h1>
+                        <ul class="social list-inline">
+                            <!-- if socialMedia.facebookUrl -->
+                            <% if (socialMedia.facebookUrl) { %>
+                                <li><a href="<%=socialMedia.facebookUrl%>"><i class="fa fa-facebook"></i></a></li>
+                            <% } %>
+                            <!-- if socialMedia.twitterUrl -->
+                            <% if (socialMedia.twitterUrl) { %>
+                                <li><a href="<%=socialMedia.twitterUrl%>"><i class="fa fa-twitter"></i></a></li>
+                            <% } %>
+                            <!-- if socialMedia.soundCloudUrl -->
+                            <% if (socialMedia.soundCloudUrl) { %>
+                                <li><a href="<%=socialMedia.soundCloudUrl%>"><i class="fa fa-soundcloud"></i></a></li>
+                            <% } %>
+                            <!-- if socialMedia.instagramUrl -->
+                            <% if (socialMedia.instagramUrl) { %>
+                                <li><a href="<%=socialMedia.instagramUrl%>"><i class="fa fa-instagram"></i></a></li>
+                            <% } %>
+                            <!-- if socialMedia.spotifyUrl -->
+                            <% if (socialMedia.spotifyUrl) { %>
+                                <li><a href="<%=socialMedia.spotifyUrl%>"><i class="fa fa-spotify"></i></a></li>
+                            <% } %>
+            </ul>
+                    </div>
                         <div class="video-gallery homevid">
                             <div class="gallery-tab">
                                 <div class="tab-content">
@@ -117,34 +183,12 @@
                                 </div>
                             </div> <!-- gallery tab --> 
                         </div>
-                    <ul class="social list-inline">
-                                    <!-- if socialMedia.facebookUrl -->
-                                    <% if (socialMedia.facebookUrl) { %>
-                                        <li><a href="<%=socialMedia.facebookUrl%>"><i class="fa fa-facebook"></i></a></li>
-                                    <% } %>
-                                    <!-- if socialMedia.twitterUrl -->
-                                    <% if (socialMedia.twitterUrl) { %>
-                                        <li><a href="<%=socialMedia.twitterUrl%>"><i class="fa fa-twitter"></i></a></li>
-                                    <% } %>
-                                    <!-- if socialMedia.soundCloudUrl -->
-                                    <% if (socialMedia.soundCloudUrl) { %>
-                                        <li><a href="<%=socialMedia.soundCloudUrl%>"><i class="fa fa-soundcloud"></i></a></li>
-                                    <% } %>
-                                    <!-- if socialMedia.instagramUrl -->
-                                    <% if (socialMedia.instagramUrl) { %>
-                                        <li><a href="<%=socialMedia.instagramUrl%>"><i class="fa fa-instagram"></i></a></li>
-                                    <% } %>
-                                    <!-- if socialMedia.spotifyUrl -->
-                                    <% if (socialMedia.spotifyUrl) { %>
-                                        <li><a href="<%=socialMedia.spotifyUrl%>"><i class="fa fa-spotify"></i></a></li>
-                                    <% } %>
-                    </ul>
                 </div>
-                <div id="audio-player-wrapper" class="audio-player">
+                <div id="audio-player-wrapper" class="audio-player" style="position: absolute; width: 100%; bottom: 0;">
                     <div class="album-info">
                         <% 
                         <!-- if no show?.image?.url exists. Get random image from images/jazzEventImage/image1-image3.jpg -->
-                        let image = '' || `images/jazzEventImage/image${Math.floor(Math.random() * 3) + 1}.jpg`;
+                        let image = '' || `images/DavidP/image${Math.floor(Math.random() * 3) + 1}.jpg`;
                     
                     %>
                         <div class="album-cover">
