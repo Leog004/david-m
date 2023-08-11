@@ -8,6 +8,7 @@ router.get('/contact', viewController.getContactPage);
 router.get('/bio', viewController.getBioPage);
 router.get('/gallery', viewController.getGalleryPage);
 router.get('/shows', viewController.getShowPage);
+router.get('/music', viewController.getMusicPage);
 
 
 module.exports = router;

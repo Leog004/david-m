@@ -1,5 +1,5 @@
 const catchAsync = require('./../utils/catchAsync');
-const { GetHomePage, GetFooter, GetBioPage, getShowPage, getSocialMedia, getGalleryPage } = require('../utils/graphql');
+const { GetHomePage, GetFooter, GetBioPage, getShowPage, getSocialMedia, getGalleryPage, getMusicPage } = require('../utils/graphql');
 const { convertToMultipleParagraphs } = require('../utils/dataHelper');
 
 
@@ -56,6 +56,21 @@ exports.getGalleryPage = catchAsync ( async (req, res) => {
         galleryPage,
     });  
 });
+
+exports.getMusicPage = catchAsync ( async (req, res) => {
+    const footer = await GetFooter();
+    const socialMedia = await getSocialMedia();
+    const musicPage = await getMusicPage();
+
+
+    res.status(200).render('music',{
+        Title: 'Mathew Maciel - Music Page',
+        footer,
+        socialMedia,
+        musicPage,
+    });  
+});
+
 
 
 exports.getShowPage = catchAsync ( async (req, res) => {

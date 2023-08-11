@@ -343,3 +343,37 @@ exports.getGalleryPage = async () => {
   console.log(result.galleryPage)
   return result.galleryPage; // retur
 };
+
+exports.getMusicPage = async () => {
+  const query = gql`query GetMusicPage {
+    musicPage(where: {id: "cll5ssnrfl8i00biymplktu18"}) {
+      id
+      headerTitle
+      headerImage {
+        url
+      }
+      songs {
+        albumImage {
+          url
+        }
+        isFeatured
+        songTitle
+        songMp3 {
+          url
+        }
+      }
+      youtubeVideos {
+        title
+        youtubeLink
+        youtubeImage {
+          url
+        }
+      }
+    }
+  }
+  `;
+  
+  const result = await request(graphqlAPI, query); // get our response from api call
+  console.log(result.musicPage)
+  return result.musicPage; // retur
+};

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Theme Region">
+       	<meta name="description" content="">
+
+        <title>David M</title>
+
+         <!-- Fonts -->
+        <link href='https://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
+		
+        <!-- icons -->
+ 
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">  
+        <link rel="stylesheet" href="css/jplayer.css"> 
+        <link rel="stylesheet" href="css/beat.css">         
+        <link rel="stylesheet" href="css/magnific-popup.css">
+        <link rel="stylesheet" href="css/owl.carousel.css">      
+        <link rel="stylesheet" href="css/cubeportfolio.min.css">      
+        <link rel="stylesheet" href="css/main.css"> 
+        <link rel="stylesheet" href="css/responsive.css">         
+
+
+        <style>
+
+            #navigation .navbar:after,  #navigation .navbar:before{
+                border-top: 30px solid transparent;
+                background-color: transparent;
+            }
+            .btn.btn-primary{
+            
+                background-color:#000;
+                border: 1px solid #000;
+            }
+            
+            .btn.btn-primary::hover{
+                color:#000 !important;
+            }           
+            .video-overlay {
+            
+                background-color:rgb(0,0,0,0.4) !important;
+            }
+            .homevid{
+                width:50%;
+            }
+    
+    
+            @media (max-width: 991px){
+            .homevid{
+                width:100%;
+                margin: 40px 0;
+            }         
+                    
+                .band-banner .home-content h1, .home-banner.biography .home-content h1 {
+                     font-size: 45px;
+                      line-height: 42px;
+                }
+            }
+    
+            @media (max-width: 720px){
+                .social.list-inline {
+                    position: absolute !important;
+                    bottom: 0 !important;
+                    left: 50% !important;
+                    transform: translate(-50%, -50%) !important;
+                }
+                .video-gallery.homevid {
+                    display: none !important;
+                }
+            }
+        </style>
+    
+    </head>
+    <body class="home-body">
+        <% include partials/header %>
+
+        <!-- Set all my variables -->
+        <% var backgroundImage = musicPage?.headerImage?.url || 'images/DavidP/IMG_6469.png'; %>
+        <% var songs = musicPage?.songs || []; %>  
+        <% var videos = musicPage?.youtubeVideos || []; %>
+
+        <div class="feedback section-padding before-after" style="margin-top:80px;">
+                <div class="entry-post" style="background-image:url('<%= backgroundImage %>'); height:50vh;background-size: cover; background-repeat: no-repeat;background-position: center;">
+                    <% include partials/social %>              
+                </div>                     
+        </div><!-- feedback -->   
+
+        <div class="gallery-section bg-image section-padding" style="padding-top: 100px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="video-gallery">
+                            <div class="section-title">
+                                <h1>Showcase</h1>
+                                <h2>Video Performances</h2>
+                            </div>                             
+                            <div class="gallery-tab">
+                                <div class="tab-content">
+                                    <% videos.forEach((video, index) => { %>
+                                        <% var image = video?.youtubeImage?.url || 'images/DavidP/IMG_6469.png'; %>
+                                        
+                                        <div role="tabpanel" class="tab-pane <%= index === 0 ? 'active' : '' %>" id="<%= index %>">
+                                            <div class="video-content">
+                                                <div class="video-overlay"></div>
+                                                <img class="img-responsive" src="<%= image %>" alt="Image">
+                                                <div class="video video-icons text-center">
+                                                    <a class="video-link" href="<%= video?.youtubeLink %>">
+                                                        <img class="img-responsive" src="images/player/1.png" alt="Image">
+                                                    </a>
+                                                </div>
+                                                <!-- Video Title -->
+                                                <h3><%= video?.title %></h3>
+                                                <!-- Video Description -->
+                                                <p><%= video?.description %></p>
+                                            </div>
+                                        </div>
+                                    <% }) %>
+                                </div>
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <% videos.forEach((video, index) => { %>
+                                        <% var image = video?.youtubeImage?.url || 'images/DavidP/IMG_6469.png'; %>
+
+                                        <li role="presentation" class="<%= index === 0 ? 'active' : '' %>">
+                                            <a href="#<%= index %>" aria-controls="<%= index %>" role="tab" data-toggle="tab">
+                                                <div class="tab-image">
+                                                    <div class="gallery-image">
+                                                        <img class="img-responsive" src="<%= image %>" alt="Image">
+                                                        <div class="image-overlay">
+                                                            <img class="img-responsive" src="images/player/1.png" alt="Image">
+                                                        </div>
+                                                    </div>
+                                                    <h5><%= video?.title %></h5>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    <% }) %>
+                                </ul>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-sm-6">                       
+                        <div class="festival-schedule">
+                            <div class="section-title">
+                                <h1>Showcase</h1>
+                                <h2>Music</h2>
+                            </div>                             
+                            <div id="jplayer-container">
+                                <div id="jplayer" class="jplayer"></div>
+                                <div id="jp-container" class="audio-content">
+                                    <div class="control-content">
+                                        <div id="playing"></div>
+                                        <ul class="jp-controls">
+                                            <li><a href="javascript:;" class="jp-play" tabindex="1"><img  class="img-responsive" src="images/player/3.png" alt="Image"></a></li>
+                                            <li><a href="javascript:;" class="jp-pause" tabindex="1"><img  class="img-responsive" src="images/player/5.png" alt="Image"></a></li>
+                                        </ul> 
+                                        <div class="jp-interface">
+                                            <div class="jp-progress">
+                                                <div class="jp-seek-bar">
+                                                    <div class="jp-play-bar"></div>
+                                                </div>
+                                            </div>
+                                            <div class="jp-current-time"></div>
+                                        </div>
+                                    </div>
+                                    <div class="jp-playlist">
+                                        <ul>
+                                            <li></li>
+                                        </ul>
+                                    </div>
+                                    <div class="jp-no-solution">
+                                        <span>Update Required</span>
+                                        To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+                                    </div>                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- row -->
+            </div><!-- container -->
+        </div><!-- gallery section --> 
+
+
+<!-- partials footer -->
+<% include partials/footer %>
+
+
+        <!-- JS -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.jplayer.min.js"></script> 
+        <script src="js/jplayer.playlist.min.js"></script> 
+        <script src="js/jquery.plugin.js"></script> 
+        <script src="js/jquery.countdown.js"></script>    
+        <script src="js/magnific-popup.min.js"></script>    
+        <script src="js/jquery.backstretch.min.js"></script>
+        <script src="js/owl.carousel.min.js"></script> 
+        <script src="js/inview.min.js"></script> 
+        <script src="js/jquery.spinner.min.js"></script> 
+        <script src="js/cubeportfolio.min.js"></script>    
+        <script src="js/jplayer.source.js"></script>
+        <script src="js/main.js"></script> 	          
+
+
+        <script>
+
+              (function () {
+                var songData = [];
+
+                <% songs.forEach((song) => { %>  // Loop through the songs array using EJS syntax
+                    songData.push({
+                        title: "<%= song?.songTitle %>",
+                        mp3: "<%= song?.songMp3?.url %>"
+                    });
+                <% }) %>
+
+                console.log(songData);  // Print the song data for each iteration
+
+            // ========= jPlayer Album Detail Page ==========
+            var myPlaylist = new jPlayerPlaylist({
+                jPlayer: "#jplayer",
+                cssSelectorAncestor: "#jp-container"
+            }, songData, {
+                swfPath: "assets/jplayer/jplayer",
+                supplied: "mp3",
+                wmode: "window",
+                useStateClassSkin: true,
+                autoBlur: false,
+                smoothPlayBar: true,
+                keyEnabled: true,
+                size: {width: "100%"}
+            });
+            // Show The Current Track !!
+            $("#jplayer").on($.jPlayer.event.ready, function (event) {
+                var current = myPlaylist.current;
+                var playlist = myPlaylist.playlist;       
+                $.each(playlist, function (index, obj) {
+                    if (index == current) {
+                        $("#playing").html("<span class='artist-name'>David M</span>" + "<br>" + "<span class='track-name'>" + obj?.title + "</span>");
+                    }
+                });
+            });
+            $("#jplayer").on($.jPlayer.event.play, function (event) {
+                var current = myPlaylist.current;
+                var playlist = myPlaylist.playlist;       
+                $.each(playlist, function (index, obj) {
+                    if (index == current) {
+                        $("#playing").html("<span class='artist-name'>David M</span>" + "<br>" + "<span class='track-name'>" + obj?.title + "</span>");
+                    }
+                });
+            });
+
+        })();
+        </script>
+
+<script>
+    $(document).ready(function() {
+        // Add click event handler to tab links
+        $('.nav-tabs a').click(function(e) {
+            e.preventDefault();
+            $(this).tab('show'); // Show the clicked tab
+
+            // Remove "active" class from other tab links
+            $('.nav-tabs a').not(this).removeClass('active');
+
+            // Add "active" class to the clicked tab link
+            $(this).addClass('active');
+        });
+
+        // When the page loads, show the first tab and add "active" class to its link
+        $('.nav-tabs a:first').tab('show');
+        $('.nav-tabs li:first').addClass('active');
+    });
+</script>
+    
+
+    </body>
+</html>
