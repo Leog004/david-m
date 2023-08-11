@@ -73,6 +73,13 @@
                 .video-gallery.homevid {
                     display: none !important;
                 }
+
+                .jp-controls {
+                    margin-left: 0;
+                }
+                #jplayer-container #playing .artist-name {
+                    display: block;
+                }
             }
         </style>
     
@@ -104,7 +111,7 @@
                                 <div class="tab-content">
                                     <% videos.forEach((video, index) => { %>
                                         <% var image = video?.youtubeImage?.url || 'images/DavidP/IMG_6469.png'; %>
-                                        
+
                                         <div role="tabpanel" class="tab-pane <%= index === 0 ? 'active' : '' %>" id="<%= index %>">
                                             <div class="video-content">
                                                 <div class="video-overlay"></div>
