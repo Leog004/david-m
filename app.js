@@ -25,7 +25,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 // set secure https 
 app.use(helmet());
 app.use(cors());
-app.options('*', cors());
+app.use(cors({
+    origin: '*', // Allow requests from any origin during development
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true // Allow sending cookies
+  }));
 
 console.log(process.env.NODE_ENV);
 
