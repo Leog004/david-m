@@ -3,6 +3,7 @@
 <% var socialMediasoundCloud = socialMedia.soundCloudUrl || ''; %> 
 <% var socialMediaSpotifyUrl = socialMedia.spotifyUrl || ''; %>
 <% var socialMediaTwitter = socialMedia.twitterUrl || ''; %> 
+<% var socialMediaYoutubeUrl = socialMedia.youtubeUrl || ''; %> 
 
 <script type="text/javascript">
     // run on page load
@@ -60,6 +61,10 @@
         <!-- if socialMedia.spotifyUrl the show -->
         <% if (socialMedia.spotifyUrl) { %>
             <li><a href="<%= socialMediaSpotifyUrl %>"><i class="fa fa-spotify"></i></a></li>
+        <% } %>
+        <!-- if socialMedia.spotifyUrl the show -->
+        <% if (socialMedia.youtubeUrl) { %>
+            <li><a href="<%= socialMediaYoutubeUrl %>"><i class="fa fa-youtube"></i></a></li>
         <% } %>
     </ul>                               
 </div>

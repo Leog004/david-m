@@ -310,6 +310,7 @@ exports.getSocialMedia = async () => {
         soundCloudUrl
         instagramUrl
         facebookUrl
+        youtubeUrl
       }
     }
   }
