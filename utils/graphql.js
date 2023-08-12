@@ -246,6 +246,12 @@ exports.GetBioPage = async () => {
           }
         }
       }
+      resume {
+        employer
+        position
+        bulletPoint
+        date
+      }
       bioInformation {
         ... on BioCard {
           id
@@ -264,7 +270,7 @@ exports.GetBioPage = async () => {
   `;
 
   const result = await request(graphqlAPI, query); // get our response from api call
- // console.log(result.bioPage)
+ console.log(result.bioPage)
   return result.bioPage; // retur
 
 }

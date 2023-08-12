@@ -95,6 +95,10 @@
             box-shadow: #fff;
             box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
         }
+
+        .card {
+            padding: 2rem; margin: 2rem 0; box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px; background-color: #ffffffdb;
+        }
         
         @media (max-width: 991px){
          .homevid{
@@ -260,8 +264,40 @@
                 </div><!-- row -->
             </div><!-- container -->
             <% } %>
-        </div><!-- musical awards -->        
-        
+        </div><!-- musical awards -->
+
+        <!--  -->
+        <% var resumes = bioPage?.resume || []; %>
+
+        <!-- if resumes is greater than 0 -->
+        <% if (resumes.length > 0) { %>
+        <div class="about-section about bg-image section-padding before-after">
+            <div class="section-title">
+                <h1>My Past Experiance</h1>
+           </div>
+            <div class="about-content">
+                <div class="container">
+                    <div class="row">
+                        <% resumes.forEach((resume) => { %>
+                            <div class="col-sm-12 card">
+                                <h1 style="margin-bottom: 30px;"><%= resume?.employer %> <span style="font-size: 12px; font-weight: 400;">Date: <%= resume?.date %></span></h1>
+                                <h2><%= resume?.position %></h2>
+                                <ul>
+                                <%  resume.bulletPoint.forEach((el) =>  { %>
+                                   <li style="list-style: disc; margin: 15px 10px;"><%= el %></li>
+                                <% }) %>
+                            </ul>
+                            </div>
+                        <% }) %>
+                    </div><!-- row -->
+                </div><!-- container -->
+            </div><!-- about content -->
+        </div><!-- about section --> 
+                                
+
+        <% } %>
+
+
 
         
 <!-- partials footer -->
