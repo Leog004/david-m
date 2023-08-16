@@ -280,7 +280,7 @@
                     <div class="row">
                         <% resumes.forEach((resume) => { %>
                             <div class="col-sm-12 card">
-                                <h1 style="margin-bottom: 30px;"><%= resume?.employer %> <span style="font-size: 12px; font-weight: 400;">Date: <%= resume?.date %></span></h1>
+                                <h1 style="margin-bottom: 30px; display: flex; flex-wrap: wrap; gap: 2rem; align-items: baseline;"><%= resume?.employer %> <span style="font-size: 12px; font-weight: 400;">Date: <%= resume?.date %></span></h1>
                                 <h2><%= resume?.position %></h2>
                                 <ul>
                                 <%  resume.bulletPoint.forEach((el) =>  { %>

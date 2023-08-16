@@ -384,3 +384,19 @@ exports.getMusicPage = async () => {
   console.log(result.musicPage)
   return result.musicPage; // retur
 };
+
+exports.getContactPage = async () => {
+  const query = gql`query GetContactPage {
+    contantPage(where: {id: "clld82wfadcug0bio50qs0r6d"}) {
+      id
+      headerTitle
+      headerImage {
+        url
+      }
+    }
+  }`;
+  
+  const result = await request(graphqlAPI, query); // get our response from api call
+  console.log(result.contantPage)
+  return result.contantPage; // retur
+};

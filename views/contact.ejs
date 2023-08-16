@@ -25,6 +25,7 @@
         <link rel="stylesheet" href="css/cubeportfolio.min.css">      
         <link rel="stylesheet" href="css/main.css"> 
         <link rel="stylesheet" href="css/responsive.css">         
+        
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -69,46 +70,52 @@
             }
         }
     </style>
+
+    <script src='https://www.google.com/recaptcha/api.js?render=6Lek1a0nAAAAAO2iiCl_KROMqmAV4CNldZmvBD1t'></script>
+
     </head>
     <body>
         <% include partials/header %>
 
+                <!-- Set all my variables -->
+                <% var backgroundImage = contactPage?.headerImage?.url || 'images/DavidP/IMG_6469.png'; %>
+                <% var headerText = contactPage?.headerTitle || 'Contact Me'; %>
                 <div class="feedback section-padding before-after" style="margin-top:80px;">
-                <div class="entry-post" style="background-image:url('images/DavidP/IMG_6450.jpg'); height:50vh;background-size: cover; background-repeat: no-repeat;background-position: center;">
-                    <% include partials/social %>              
-                </div>                     
+                    <div class="entry-post" style="background-image:url('<%= backgroundImage %>'); height:50vh;background-size: cover; background-repeat: no-repeat;background-position: center;">
+                        <% include partials/social %>              
+                    </div>                     
             <div class="container">
                 <div class="feedback-content">
-                    <h1>Contact Me</h1>                                
-                    <form id="contact-form" class="contact-form" name="contact-form" method="post" action="#">
+                    <h1><%= headerText %></h1>
+                    <form id="contact-form" class="contact-form" name="contact-form" method="post" action="/contact">
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label for="one">Name</label>
-                                    <input type="text" class="form-control" required="required" id="one">
+                                    <label for="name">Name</label>
+                                    <input name="name" type="text" class="form-control" required="required" id="name">
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label for="two">Email</label>
-                                    <input type="email" class="form-control" required="required" id="two">
+                                    <label for="email">Email</label>
+                                    <input name="email" type="email" class="form-control" required="required" id="email">
                                 </div> 
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label for="three">Subject</label>
-                                    <input type="text" class="form-control" required="required" id="three">
+                                    <label for="subject">Subject</label>
+                                    <input name="subject" type="text" class="form-control" required="required" id="subject">
                                 </div> 
                             </div>
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label for="four">Your Text</label>
-                                    <textarea name="message" required="required" class="form-control" rows="7" id="four"></textarea>
+                                    <label for="message">Your Text</label>
+                                    <textarea name="message" required="required" class="form-control" rows="7" id="message"></textarea>
                                 </div>             
                             </div>     
                         </div>
                         <div class="form-group text-center">
-                            <button type="submit" class="btn btn-primary pull-right">Submit now!</button>
+                            <button type="submit" id="contact-btn" class="btn btn-primary pull-right">Submit now!</button>
                         </div>
                     </form><!-- contact form --> 
                 </div>
@@ -135,5 +142,90 @@
         <script src="js/cubeportfolio.min.js"></script>    
         <script src="js/jplayer.source.js"></script>
         <script src="js/main.js"></script>         
+
+        <script>
+            if (window.location.href.includes('?status=success')) {
+                // Display success message to the user
+                const successMessageHTML = `
+                        <div class="alert alert-success" role="alert">
+                            <strong>Success!</strong> Your message has been sent.
+                        </div>
+                    `;
+                
+                    
+                const form = document.getElementById('contact-form');
+                form.insertAdjacentHTML('beforebegin', successMessageHTML);
+                
+            }
+
+            else if (window.location.href.includes('?status=fail')) {
+                // Display error message to the user
+                const errorMessageHTML = `
+                        <div class="alert alert-danger" role="alert">
+                            <strong>Error!</strong> Your message could not be sent.
+                        </div>
+                    `;
+                
+                    
+                const form = document.getElementById('contact-form');
+                form.insertAdjacentHTML('beforebegin', errorMessageHTML);
+                
+            }
+
+            grecaptcha.ready(function () {
+            grecaptcha.execute('6Lek1a0nAAAAAO2iiCl_KROMqmAV4CNldZmvBD1t', { action: 'donate' }).then(function (token) {
+
+                const formDiv = document.getElementById('contact-form');
+                // Send the token to the server for verification
+                $.ajax({
+                    type: "POST",
+                    url: "/verifyRecaptha", // or any other endpoint that will handle the verification
+                    data: { token: token },
+                    success: function (response) {
+                    if (response.success) {
+                        // alert("reCAPTCHA verification succeeded, you can proceed with the form submission.");
+                    } else {
+                        const errorMessageHTML = `
+                                <div class="alert alert-danger" role="alert">
+                                    <strong>Sorry!</strong> Your IP address has been black listed. You will not be able to send a message
+                                </div>
+                            `;
+                        
+                            
+                        const form = document.getElementById('contact-form');
+                        form.insertAdjacentHTML('beforebegin', errorMessageHTML);
+                        const btn = document.getElementById('contact-btn');
+                        btn.disabled = true;
+
+                        // redirect
+                        setTimeout(function () {
+                        window.location.href = "/";
+                        }, 1000000);
+                    }
+                    },
+                    error: function () {
+                        const errorMessageHTML = `
+                                <div class="alert alert-danger" role="alert">
+                                    <strong>Sorry!</strong> Your IP address has been black listed. You will not be able to send a message
+                                </div>
+                            `;
+                        
+                            
+                        const form = document.getElementById('contact-form');
+                        form.insertAdjacentHTML('beforebegin', errorMessageHTML);
+
+                        const btn = document.getElementById('contact-btn');
+                        btn.disabled = true;
+                    // redirect
+                    setTimeout(function () {
+                        window.location.href = "/";
+                    }, 100000);
+                    }
+                });
+                });
+            });
+
+        </script>
+
     </body>
 </html>

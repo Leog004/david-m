@@ -5,10 +5,12 @@ const router = express.Router();
 
 router.get('/', viewController.getHomePage);
 router.get('/contact', viewController.getContactPage);
+router.post('/contact', viewController.postContact);
 router.get('/bio', viewController.getBioPage);
 router.get('/gallery', viewController.getGalleryPage);
 router.get('/shows', viewController.getShowPage);
 router.get('/music', viewController.getMusicPage);
+router.post('/verifyRecaptha', viewController.verifyRecaptcha);
 
 
 module.exports = router;

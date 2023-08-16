@@ -54,6 +54,7 @@
                 border: 1.8px solid rgb(55, 52, 52);
                 border-radius: 12px;
                 padding: 10px;
+                margin: 10px 0;
             }
     
             #jplayer-container .jp-controls:before, .audio-album .jp-controls:before {
@@ -145,7 +146,7 @@
                                         </div>
                                     <% }) %>
                                 </div>
-                                <ul class="nav nav-tabs" role="tablist">
+                                <ul class="nav nav-tabs" role="tablist" style="display: flex; flex-wrap: wrap;">
                                     <% videos.forEach((video, index) => { %>
                                         <% var image = video?.youtubeImage?.url || 'images/DavidP/IMG_6469.png'; %>
 

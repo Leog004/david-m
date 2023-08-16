@@ -1,6 +1,8 @@
 const catchAsync = require('./../utils/catchAsync');
-const { GetHomePage, GetFooter, GetBioPage, getShowPage, getSocialMedia, getGalleryPage, getMusicPage } = require('../utils/graphql');
+const { GetHomePage, GetFooter, GetBioPage, getShowPage, getSocialMedia, getGalleryPage, getMusicPage, getContactPage } = require('../utils/graphql');
 const { convertToMultipleParagraphs } = require('../utils/dataHelper');
+const emailController = require('./emailController');
+const axios = require('axios');
 
 
 
@@ -11,7 +13,7 @@ exports.getHomePage = catchAsync ( async (req, res) => {
     
 
     res.status(200).render('index', {
-        Title: 'Mathew Maciel - Home Page',
+        Title: 'David-M - Home Page',
         homePage,
         footer,
         socialMedia,
@@ -21,8 +23,11 @@ exports.getHomePage = catchAsync ( async (req, res) => {
 exports.getContactPage = catchAsync( async (req, res) => {
     const footer = await GetFooter();
     const socialMedia = await getSocialMedia();
+    const contactPage = await getContactPage();
+
     res.status(200).render('contact',{
-        Title: 'Mathew Maciel - Contact Page',
+        Title: 'David-M - Contact Page',
+        contactPage,
         footer,
         socialMedia,
     });
@@ -36,7 +41,7 @@ exports.getBioPage = catchAsync ( async (req, res) => {
     
 
     res.status(200).render('bio',{
-        Title: 'Mathew Maciel - Bio Page',
+        Title: 'David-M - Bio Page',
         footer,
         bioPage,
         socialMedia,
@@ -50,7 +55,7 @@ exports.getGalleryPage = catchAsync ( async (req, res) => {
 
 
     res.status(200).render('gallery',{
-        Title: 'Mathew Maciel - Music Page',
+        Title: 'David-M - Gallery Page',
         footer,
         socialMedia,
         galleryPage,
@@ -64,7 +69,7 @@ exports.getMusicPage = catchAsync ( async (req, res) => {
 
 
     res.status(200).render('music',{
-        Title: 'Mathew Maciel - Music Page',
+        Title: 'David-M - Music Page',
         footer,
         socialMedia,
         musicPage,
@@ -94,7 +99,7 @@ exports.getShowPage = catchAsync ( async (req, res) => {
 
         
     res.status(200).render('shows',{
-        Title: 'Mathew Maciel - About Page',
+        Title: 'David-M - Show Page',
         footer,
         showPage,
         socialMedia,
@@ -104,38 +109,54 @@ exports.getShowPage = catchAsync ( async (req, res) => {
 
 
 
-// exports.postContact = catchAsync( async (req, res) => {
+exports.postContact = catchAsync( async (req, res) => {
 
-//     const {name, email, message} = req.body;
+    const { name, email, message, subject } = req.body;
 
-//     // Check if email exists
-//     if(!email || !message){
-//         return next(new AppError('Please provide email and message!', 400));
-//     }
+    try {
+      const response = await emailController.sendEmail(name, email, message, subject);
 
-//     const newContact = await {
-//         name: req.body.name,
-//         email: req.body.email,
-//         message: req.body.message       
-//     };
+        //  redirect to contact page and also send status message
+        res.redirect('/contact?status=success');
 
-//     const toHost = await {
-//         name: req.body.name,
-//         email: 'mathewmacielmusic@gmail.com',
-//         userEmail: req.body.email,
-//         message: req.body.message       
-//     };
+    //   res.status(200).json({ message: 'Email sent successfully', response });
 
-//       const url = `${req.protocol}://${req.get('host')}/`;
-//       await new Email(newContact, url).sendWelcome();
-//       await new Email(toHost, url).sendToHost();
+    } catch (error) {
+        res.redirect('/contact?status=fail');
+      //res.status(500).json({ error: 'Error sending email', message: error.message });
+    }
 
-//       res.status(200).json({
-//         status: 'success',
-//         message: 'email sent!'
-//       });
+});
 
-// });
+exports.verifyRecaptcha = catchAsync(async (req, res) => {
+    const { token } = req.body;
+    const secretKey = process.env.GOOGLE_SECRET_KEY; // Fix typo here (REACAPTHAKEY -> RECAPTCHA_KEY)
+    const userIp = req.headers["x-forwarded-for"];
+  
+    try {
+      const response = await axios.post("https://www.google.com/recaptcha/api/siteverify", null, {
+        params: {
+          secret: secretKey,
+          response: token,
+          remoteip: userIp,
+        },
+      });
+  
+      if (response.data.success) {
+        return res.send({ success: true });
+      } else {
+        return res.send({ success: false, error: response.data["error-codes"] });
+      }
+    } catch (error) {
+      return res.send({ success: false, error: error.message });
+    }
+  });
+  
+  
+  
+  
+  
+  
 
 
 // exports.postSubscriber = catchAsync( async(req, res) => {
