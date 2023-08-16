@@ -9,7 +9,7 @@ async function sendEmail(name, email, message, subject) {
     return new Promise((resolve, reject) => {
         const emailData = {
             Recipients: {
-                To: ["leog4za@gmail.com"]
+                To: ["dmesquitic@gmail.com"]
             },
             Content: {
                 Body: [
@@ -24,7 +24,7 @@ async function sendEmail(name, email, message, subject) {
                         Content: "Name: " + name + "\nEmail: " + email + "\nSubject: " + subject + "\nMessage: " + message
                     }
                 ],
-                From: "leog4za@gmail.com",
+                From: "dmesquitic@gmail.com",
                 Subject: "New Contact from " + name + " - " + subject
             }
         };
