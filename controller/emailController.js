@@ -1,7 +1,7 @@
 const ElasticEmail = require('@elasticemail/elasticemail-client');
 const client = ElasticEmail.ApiClient.instance;
 const apikey = client.authentications['apikey'];
-apikey.apiKey = "8A2EB92B78664C1D0C02A68036BED2F3BD893EDFA93EFE91C7C8E31C63E0BE756D6826EE1185E911F3DF1244E71762E5";
+apikey.apiKey = process.env.ELASTIC_API;
 
 const emailsApi = new ElasticEmail.EmailsApi();
 
