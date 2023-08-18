@@ -390,6 +390,7 @@ exports.getContactPage = async () => {
     contantPage(where: {id: "clld82wfadcug0bio50qs0r6d"}) {
       id
       headerTitle
+      text
       headerImage {
         url
       }
