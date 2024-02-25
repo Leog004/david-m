@@ -283,7 +283,7 @@ exports.getShowPage = async () => {
       headerImage {
         url
       }
-      shows {
+      shows(first: 30) {
         description
         date
         address
