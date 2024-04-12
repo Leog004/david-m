@@ -118,7 +118,8 @@
                                     <label for="message">Your Text</label>
                                     <textarea name="message" required="required" class="form-control" rows="7" id="message"></textarea>
                                 </div>             
-                            </div>     
+                            </div>
+                            <input type="hidden" name="recaptchaResponse" id="recaptchaResponse">     
                         </div>
                         <div class="form-group text-center">
                             <button type="submit" id="contact-btn" class="btn btn-primary pull-right">Submit now!</button>
@@ -178,59 +179,39 @@
                 
             }
 
-            grecaptcha.ready(function () {
-            grecaptcha.execute('6Lek1a0nAAAAAO2iiCl_KROMqmAV4CNldZmvBD1t', { action: 'donate' }).then(function (token) {
+            document.addEventListener('DOMContentLoaded', function () {
+                const form = document.getElementById('contact-form');
+                form.addEventListener('submit', function (event) {
+                    event.preventDefault(); // Prevent the default form submission
 
-                const formDiv = document.getElementById('contact-form');
-                // Send the token to the server for verification
-                $.ajax({
-                    type: "POST",
-                    url: "/verifyRecaptha", // or any other endpoint that will handle the verification
-                    data: { token: token },
-                    success: function (response) {
-                    if (response.success) {
-                        // alert("reCAPTCHA verification succeeded, you can proceed with the form submission.");
-                    } else {
-                        const errorMessageHTML = `
-                                <div class="alert alert-danger" role="alert">
-                                    <strong>Sorry!</strong> Your IP address has been black listed. You will not be able to send a message
-                                </div>
-                            `;
-                        
-                            
-                        const form = document.getElementById('contact-form');
-                        form.insertAdjacentHTML('beforebegin', errorMessageHTML);
-                        const btn = document.getElementById('contact-btn');
-                        btn.disabled = true;
-
-                        // redirect
-                        setTimeout(function () {
-                        window.location.href = "/";
-                        }, 1000000);
-                    }
-                    },
-                    error: function () {
-                        const errorMessageHTML = `
-                                <div class="alert alert-danger" role="alert">
-                                    <strong>Sorry!</strong> Your IP address has been black listed. You will not be able to send a message
-                                </div>
-                            `;
-                        
-                            
-                        const form = document.getElementById('contact-form');
-                        form.insertAdjacentHTML('beforebegin', errorMessageHTML);
-
-                        const btn = document.getElementById('contact-btn');
-                        btn.disabled = true;
-                    // redirect
-                    setTimeout(function () {
-                        window.location.href = "/";
-                    }, 100000);
-                    }
+                    grecaptcha.ready(function () {
+                        grecaptcha.execute('6Lek1a0nAAAAAO2iiCl_KROMqmAV4CNldZmvBD1t', { action: 'submit' }).then(function (token) {
+                            document.getElementById('recaptchaResponse').value = token; // Assuming you have an input in your form to handle this token
+                            verifyRecaptcha(token);
+                        });
+                    });
                 });
-                });
+
+                function verifyRecaptcha(token) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/verifyRecaptcha", // Endpoint to verify the token
+                        data: {
+                            token: token
+                        },
+                        success: function (response) {
+                            if (response.success) {
+                                form.submit(); // Submit the form if reCAPTCHA is successful
+                            } else {
+                                alert("reCAPTCHA verification failed. Please try again.");
+                            }
+                        },
+                        error: function () {
+                            alert("Error verifying reCAPTCHA. Please try again later.");
+                        }
+                    });
+                }
             });
-
         </script>
 
     </body>

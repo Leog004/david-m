@@ -10,7 +10,7 @@ router.get('/bio', viewController.getBioPage);
 router.get('/gallery', viewController.getGalleryPage);
 router.get('/shows', viewController.getShowPage);
 router.get('/music', viewController.getMusicPage);
-router.post('/verifyRecaptha', viewController.verifyRecaptcha);
+router.post('/verifyRecaptcha', viewController.verifyRecaptcha);
 
 
 module.exports = router;
