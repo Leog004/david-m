@@ -4,16 +4,24 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="author" content="Theme Region">
-       	<meta name="description" content="">
+        <meta name="author" content="David M">
+        <meta name="description" content="Explore David M's Music Page for an immersive experience of his latest video performances and tracks. Dive into a rich gallery of music videos, listen to your favorite songs, and stay updated with David M's dynamic and engaging music collection.">
 
-        <title>David M</title>
+
+        <title>David M - Music Page</title>
 
          <!-- Fonts -->
         <link href='https://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
 		
         <!-- icons -->
- 
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
+
 
         <!-- CSS -->
         <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -25,80 +33,7 @@
         <link rel="stylesheet" href="css/cubeportfolio.min.css">      
         <link rel="stylesheet" href="css/main.css"> 
         <link rel="stylesheet" href="css/responsive.css">         
-
-
-        <style>
-
-            #navigation .navbar:after,  #navigation .navbar:before{
-                border-top: 30px solid transparent;
-                background-color: transparent;
-            }
-            .btn.btn-primary{
-            
-                background-color:#000;
-                border: 1px solid #000;
-            }
-            
-            .btn.btn-primary::hover{
-                color:#000 !important;
-            }           
-            .video-overlay {
-            
-                background-color:rgb(0,0,0,0.4) !important;
-            }
-            .homevid{
-                width:50%;
-            }
-
-            .nav-tabs li.active {
-                border: 1.8px solid rgb(55, 52, 52);
-                border-radius: 12px;
-                padding: 10px;
-                margin: 10px 0;
-            }
-    
-            #jplayer-container .jp-controls:before, .audio-album .jp-controls:before {
-                position: absolute;
-                content: "";
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: unset !important;
-                z-index: -1;
-            }
-    
-            @media (max-width: 991px){
-            .homevid{
-                width:100%;
-                margin: 40px 0;
-            }         
-                    
-                .band-banner .home-content h1, .home-banner.biography .home-content h1 {
-                     font-size: 45px;
-                      line-height: 42px;
-                }
-            }
-    
-            @media (max-width: 720px){
-                .social.list-inline {
-                    position: absolute !important;
-                    bottom: 0 !important;
-                    left: 50% !important;
-                    transform: translate(-50%, -50%) !important;
-                }
-                .video-gallery.homevid {
-                    display: none !important;
-                }
-
-                .jp-controls {
-                    margin-left: 0;
-                }
-                #jplayer-container #playing .artist-name {
-                    display: block;
-                }
-            }
-        </style>
+        <link rel="stylesheet" href="css/music.css">     
     
     </head>
     <body class="home-body">
@@ -146,27 +81,20 @@
                                         </div>
                                     <% }) %>
                                 </div>
-                                <ul class="nav nav-tabs" role="tablist" style="display: flex; flex-wrap: wrap;">
-                                    <% videos.forEach((video, index) => { %>
-                                        <% var image = video?.youtubeImage?.url || 'images/DavidP/IMG_6469.png'; %>
-
-                                        <li role="presentation" class="<%= index === 0 ? 'active' : '' %>">
-                                            <a href="#<%= index %>" aria-controls="<%= index %>" role="tab" data-toggle="tab">
-                                                <div class="tab-image">
-                                                    <div class="gallery-image">
-                                                        <img class="img-responsive" src="<%= image %>" alt="Image">
-                                                        <!-- <div class="image-overlay">
-                                                            <img class="img-responsive" src="images/player/1.png" alt="Image">
-                                                        </div> -->
-                                                    </div>
-                                                    <h5><%= video?.title %></h5>
+                                <div class="nav nav-tabs" role="tablist">
+                                <% videos.forEach((video, index) => { %>
+                                    <% var image = video?.youtubeImage?.url || 'images/DavidP/IMG_6469.png'; %>
+                                    <a href="#<%= index %>" aria-controls="<%= index %>" role="tab" data-toggle="tab">
+                                        <article role="presentation" class="article-container">
+                                                <img src="<%= image %>" alt="" class="image">
+                                                <div class="flex-container">
+                                                    <h2 class="title"><%= video?.title %></h2>
                                                 </div>
-                                            </a>
-                                        </li>
-                                    <% }) %>
-                                </ul>
+                                        </article>
+                                    </a>
+                                <% }) %>
+                                </div>
                             </div>
-                            
                         </div>
                     </div>
                     <div class="col-sm-6">                       
@@ -300,20 +228,20 @@
 <script>
     $(document).ready(function() {
         // Add click event handler to tab links
-        $('.nav-tabs a').click(function(e) {
+        $('.article-container').click(function(e) {
             e.preventDefault();
             $(this).tab('show'); // Show the clicked tab
 
             // Remove "active" class from other tab links
-            $('.nav-tabs a').not(this).removeClass('active');
+            $('.article-container').not(this).removeClass('active');
 
             // Add "active" class to the clicked tab link
             $(this).addClass('active');
         });
 
         // When the page loads, show the first tab and add "active" class to its link
-        $('.nav-tabs a:first').tab('show');
-        $('.nav-tabs li:first').addClass('active');
+        $('.article-container:first').tab('show');
+        $('.article-container:first').addClass('active');
     });
 </script>
     
